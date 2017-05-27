@@ -6,7 +6,7 @@ This package includes variety of map/GIS related demo components:
 
 <b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) package first
 
-# PSObjectSearch
+## PSObjectSearch
 The following is example of the component showing cases.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/PSObjectMap.png "Sample Image")
