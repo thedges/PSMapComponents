@@ -1,12 +1,17 @@
-# PSObjectSearch
+# PSMapComponents
+This package includes variety of map/GIS related demo components:
+* PSObjectSearch - 
+* PSRecordLocator - 
+* PSAccessTracker - 
 
+<b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) package first
+
+# PSObjectSearch
 The following is example of the component showing cases.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/PSObjectMap.png "Sample Image")
 
 <b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
-
-<b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) package first
 
 * Creates a lightning component with main purpose to show records on a map. It has 3 primary sections:
   - A configurable section for filtering the data
