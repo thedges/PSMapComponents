@@ -46,8 +46,8 @@ The following is example of the map component on a record.
 
 * Features of the component:
   - If lat/lng location already exists on record, it will center on that location
-  - Move the map to new location and address will show in bottom of map. Click on address location and it will set fields on the record.
-  - A "locate me" icon will show in top-right of map. This icon shows once the component captures your current location. Just click this to move to your current location.
+  - Move the map to new location and address will show in bottom of map. Click on address location and it will set fields on the record. Address will disappear once you have set it.
+  - A "find me" icon will show in top-right of map. This icon shows once the component captures your current lat/lng location. Just click this to move to your current location.
 * The component configuration fields are:
   - <b>SObject Field For Latitude</b> - SObject field that stores the latitude value
   - <b>SObject Field For Longitude</b> - SObject field that stores the longitude value
