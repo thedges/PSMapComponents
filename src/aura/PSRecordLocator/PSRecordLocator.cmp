@@ -1,0 +1,42 @@
+<aura:component access="global" controller="PSRecordLocatorController" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+  <ltng:require scripts="{!$Resource.leaflet_1_0_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_0_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
+
+  <aura:attribute name="mapCenterLat" type="String" default="30.267811" required="true" access="global" />
+  <aura:attribute name="mapCenterLng" type="String" default="-97.744328" required="true" access="global" />
+  <aura:attribute name="mapLatField" type="String" default="Location__Latitude__s" required="true" access="global" />
+  <aura:attribute name="mapLngField" type="String" default="Location__Longitude__s" required="true" access="global" />
+  <aura:attribute name="addrField" type="String" default="Full_Address__c" required="true" access="global" />
+  <aura:attribute name="addrStreetField" type="String" default="Street__c" required="true" access="global" />
+  <aura:attribute name="addrCityField" type="String" default="City__c" required="true" access="global" />
+  <aura:attribute name="addrStateField" type="String" default="State__c" required="true" access="global" />
+  <aura:attribute name="addrPostalField" type="String" default="Postal__c" required="true" access="global" />
+
+  <aura:attribute name="mapZoomLevel" type="Integer" default="11" required="true" access="global" />
+  <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
+
+  <aura:attribute name="latitude" type="String" />
+  <aura:attribute name="longitude" type="String" />
+  <aura:attribute name="fullAddress" type="String" />
+  <aura:attribute name="street" type="String" />
+  <aura:attribute name="city" type="String" />
+  <aura:attribute name="state" type="String" />
+  <aura:attribute name="postal" type="String" />
+
+  <aura:attribute name="origLat" type="String" />
+  <aura:attribute name="origLng" type="String" />
+
+  <aura:attribute name="map" type="Object" />
+  <aura:attribute name="runtimeEnv" type="object" />
+  <aura:attribute name="mapHTML" type="String" />
+
+  <div class="slds-p-top--medium">
+    <div aura:id="mapContainer" id="mapContainer">
+      <div aura:id="map" id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+      <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px;"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
+      <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="/resource/mapLocateMe" height="42" width="42" onclick="{!c.centerOnLocation}" /></div>
+    </div>
+  </div>
+      
+
+
+</aura:component>

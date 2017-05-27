@@ -1,0 +1,7 @@
+<design:component label="Record Access Tracker">
+  <design:attribute name="sobject" label="Child SObject API Name To Update" Description="The child SObject API name to add current geolocation to"  />
+  <design:attribute name="parentField" label="Child SObject Field API Name (Parent)" Description="The child SObject field API name to the parent object"  />
+  <design:attribute name="latitudeField" label="Child SObject Field API Name (Latitude)" Description="The child SObject field API name to store latitude"  />
+  <design:attribute name="longitudeField" label="Child SObject Field API Name (Longitude)" Description="The child SObject field API name to store longitude"  />
+  <design:attribute name="addressField" label="Child SObject Field API Name (Address)" Description="The child SObject field API name to store full address"  />
+</design:component>

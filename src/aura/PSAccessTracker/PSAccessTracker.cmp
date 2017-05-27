@@ -1,0 +1,13 @@
+<aura:component access="global" controller="PSAccessTrackerController" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" >
+  <aura:attribute name="sobject" type="String" default="Access_Tracker__c" required="true" access="global" />
+  <aura:attribute name="parentField" type="String" default="GeoTestObject__c" required="true" access="global" />
+  <aura:attribute name="latitudeField" type="String" default="Location__Latitude__s" required="true" access="global" />
+  <aura:attribute name="longitudeField" type="String" default="Location__Longitude__s" required="true" access="global" />
+  <aura:attribute name="addressField" type="String" default="" required="false" access="global" />
+    
+  <aura:attribute name="latitude" type="Decimal" />
+  <aura:attribute name="longitude" type="Decimal" />
+  <aura:attribute name="address" type="String" />
+    
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+</aura:component>

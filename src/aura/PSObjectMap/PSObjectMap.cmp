@@ -1,0 +1,25 @@
+<aura:component access="global"  >
+  <ltng:require scripts="{!$Resource.leaflet_1_0_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_0_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
+
+  <aura:attribute name="recList" type="List" access="global" />
+  <aura:attribute name="mapCenterLat" type="String" default="30.267811" required="true" access="global" />
+  <aura:attribute name="mapCenterLng" type="String" default="-97.744328" required="true" access="global" />
+  <aura:attribute name="mapLatField" type="String" default="Location__Latitude__s" required="true" access="global" />
+  <aura:attribute name="mapLngField" type="String" default="Location__Longitude__s" required="true" access="global" />
+  <aura:attribute name="mapZoomLevel" type="Integer" default="11" required="true" access="global" />
+  <aura:attribute name="mapIconField" type="String" default="IconField__c" required="true" access="global" />
+  <aura:attribute name="mapMarkerField" type="String" default="MarkerHTML__c" required="true" access="global" />
+  <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
+
+  <aura:attribute name="filterFieldComps" type="List" />
+  <aura:attribute name="map" type="Object" />
+  <aura:attribute name="markersLayerList" type="List" />
+  <aura:attribute name="runtimeEnv" type="object" />
+
+  <!-- Event Handlers -->
+  <aura:handler event="c:PSRefreshMapEvent" action="{!c.handleMapRefresh}" />
+
+  <div class="slds-p-top--medium">
+    <div id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+  </div>
+</aura:component>

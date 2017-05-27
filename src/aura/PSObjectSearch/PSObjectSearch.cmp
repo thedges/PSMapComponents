@@ -1,0 +1,68 @@
+<aura:component controller="PSObjectSearchController" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
+
+  <!-- Configuration Parameters -->
+  <aura:attribute name="sobject" type="String" default="Case" />
+  <aura:attribute name="title" type="String" default="Case Search Filter" />
+  <aura:attribute name="filterButton" type="String" default="Search" />
+  <aura:attribute name="filterFields" type="String" default="Type,Status,Subject" />
+  <aura:attribute name="tableFields" type="String" default="CaseNumber,Subject,Status,Type" />
+
+  <aura:attribute name="mapCenterLat" type="String" default="30.267811" />
+  <aura:attribute name="mapCenterLng" type="String" default="-97.744328" />
+  <aura:attribute name="mapLatField" type="String" default="Location__Latitude__s" />
+  <aura:attribute name="mapLngField" type="String" default="Location__Longitude__s" />
+  <aura:attribute name="mapZoomLevel" type="Integer" default="11" />
+  <aura:attribute name="mapIconField" type="String" default="MapIcon__c" />
+  <aura:attribute name="mapMarkerField" type="String" default="MarkerHTML__c" />
+  <aura:attribute name="mapHeight" type="String" default="500" />
+  <aura:attribute name="mapOnly" type="String" default="true" />
+  <aura:attribute name="extraWhereClause" type="String" default="" />
+
+  <!-- Runtime Parameters -->
+  <aura:attribute name="soql" type="String" />
+  <aura:attribute name="recList" type="List" />
+  <aura:attribute name="filterFieldComps" type="List" />
+  <aura:attribute name="tableFieldComps" type="List" />
+  <aura:attribute name="map" type="Object" />
+  <aura:attribute name="markersLayerList" type="List" />
+  <aura:attribute name="errorMsg" type="String" />
+
+  <!-- Event Handlers -->
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <aura:registerEvent name="refreshMap" type="c:PSRefreshMapEvent" />
+  <aura:registerEvent name="refreshDataTable" type="c:PSRefreshDataTableEvent" />
+
+  <div class="container">
+    <aura:if isTrue="{!v.errorMsg.length > 0}">
+      <ui:message title="Error" severity="error" closable="true">
+        {!v.errorMsg}
+      </ui:message>
+    </aura:if>
+    <div class="slds-grid slds-wrap slds-grid--pull-padded">
+      <div class="slds-p-horizontal--small slds-size--1-of-1">
+        <fieldset class="slds-box slds-theme--default">
+          <legend class="slds-text-heading--medium "><span style="font-weight:bold">{!v.title}</span></legend>
+          <form class="slds-form--inline" id="filterForm">
+            <aura:renderIf isTrue="{!v.filterFieldComps.length > 0}">
+              <aura:iteration items="{!v.filterFieldComps}" var="filterComp" indexVar="i">
+                <c:PSInputField fld="{!filterComp}" />
+              </aura:iteration>
+            </aura:renderIf>
+            <div class="slds-form-element XXslds-p-top--small">
+              <ui:button label="{!v.filterButton}" class="slds-button slds-button--brand" labelClass="label" press="{!c.fireFilter}" />
+            </div>
+          </form>
+
+          <aura:renderIf isTrue="{!and(and(v.mapLatField != null, v.mapLatField.length > 0), and(v.mapLngField != null, v.mapLngField.length > 0))}">
+            <c:PSObjectMap recList="{!v.recList}" mapCenterLat="{!v.mapCenterLat}" mapCenterLng="{!v.mapCenterLng}" mapLatField="{!v.mapLatField}" mapLngField="{!v.mapLngField}" mapZoomLevel="{!v.mapZoomLevel}" mapIconField="{!v.mapIconField}" mapMarkerField="{!v.mapMarkerField}" mapHeight="{!v.mapHeight}"/>
+           </aura:renderIf>
+
+          <aura:renderIf isTrue="{!and(and(v.tableFieldComps != null, v.tableFieldComps.length > 0), $Browser.formFactor == 'DESKTOP')}">
+            <c:PSDataTable sobject="{!v.sobject}" recList="{!v.recList}" tableFields="{!v.tableFields}" tableFieldComps="{!v.tableFieldComps}"/>
+          </aura:renderIf>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</aura:component>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>PSAccessTrackerController</members>
+        <members>PSObjectSearchController</members>
+        <members>PSRecordLocatorController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>PSAccessTracker</members>
+        <members>PSDataTable</members>
+        <members>PSObjectMap</members>
+        <members>PSObjectSearch</members>
+        <members>PSRecordLocator</members>
+        <members>PSRefreshDataTableEvent</members>
+        <members>PSRefreshMapEvent</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>Case.Location__c</members>
+        <members>Case.MapIcon__c</members>
+        <members>Case.MarkerHTML__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>JQueryDataTable_1_10_12</members>
+        <members>jquery_2_2_4</members>
+        <members>leaflet_1_0_2</members>
+        <members>lodash</members>
+        <members>mapCrosshair</members>
+        <members>mapLocateMe</members>
+        <name>StaticResource</name>
+    </types>
+    <version>39.0</version>
+</Package>

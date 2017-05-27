@@ -1,0 +1,13 @@
+<design:component label="Record Map Locator">
+    <design:attribute name="mapLatField" label="SObject Field For Latitude" Description="SObject field that stores the latitude value"  />
+    <design:attribute name="mapLngField" label="SObject Field For Longitude" Description="SObject field that stores the longitude value"  />
+    <design:attribute name="addrField" label="SObject Field For Full Address" Description="SObject field that stores full address in one value"  />
+    <design:attribute name="addrStreetField" label="SObject Field For Street" Description="SObject field that stores the street"  />
+    <design:attribute name="addrCityField" label="SObject Field For City" Description="SObject field that stores the city"  />
+    <design:attribute name="addrStateField" label="SObject Field For State" Description="SObject field that stores the state"  />
+    <design:attribute name="addrPostalField" label="SObject Field For Postal/Zipcode" Description="SObject field that stores postal/zip code"  />
+    <design:attribute name="mapCenterLat" label="Map Center Latitude" Description="Latitude for center of map"  />
+    <design:attribute name="mapCenterLng" label="Map Center Longitude" Description="Longitude for center of map"  />
+    <design:attribute name="mapZoomLevel" label="Map Zoom Level" Description="Map zoom level"  />
+    <design:attribute name="mapHeight" label="Height of map in pixels" Description="Height of map in pixels"  />
+</design:component>

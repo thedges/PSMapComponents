@@ -1,0 +1,18 @@
+<aura:component access="global">
+  <ltng:require scripts="{!$Resource.jquery_2_2_4 + ',' + $Resource.JQueryDataTable_1_10_12 + '/js/jquery.dataTables.min.js,' + $Resource.lodash}" styles="{!$Resource.JQueryDataTable_1_10_12 + '/css/jquery.dataTables.min.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
+
+  <aura:attribute name="sobject" type="String" default="Case" />
+  <aura:attribute name="recList" type="List" required="true" access="global" />
+  <aura:attribute name="tableFields" type="String" required="true" access="global" />
+  <aura:attribute name="tableFieldComps" type="List" required="true" access="global" />
+
+  <aura:attribute name="runtimeEnv" type="object" />
+  
+  <aura:handler event="c:PSRefreshDataTableEvent" action="{!c.handleDataTableRefresh}" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <div class="slds-p-top--medium">
+    <table id="recordTable" class="display" cellspacing="0" width="100%"/>
+  </div>
+</aura:component>

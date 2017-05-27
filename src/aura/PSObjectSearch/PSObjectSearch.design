@@ -1,0 +1,18 @@
+<design:component label="PSObjectSearch">
+   
+    <design:attribute name="sobject" label="SObject To Map" Description="SObject to map"/>
+	<design:attribute name="title" label="Title of Map Section" Description="Title for display"/>
+    <design:attribute name="filterButton" label="Filter Button Label" Description="Text for filter button" />
+    <design:attribute name="filterFields" label="SObject Fields To Filter On" Description="Comma separated list of fields to filter on" />
+    <design:attribute name="tableFields" label="SObject Fields To Show in Table" Description="Comma separated list of fields to show in table"  />
+    <design:attribute name="mapLatField" label="SObject Field For Latitude" Description="SObject field that stores the latitude value"  />
+    <design:attribute name="mapLngField" label="SObject Field For Longitude" Description="SObject field that stores the longitude value"  />
+    <design:attribute name="mapCenterLat" label="Map Center Latitude" Description="Latitude for center of map"  />
+    <design:attribute name="mapCenterLng" label="Map Center Longitude" Description="Longitude for center of map"  />
+    <design:attribute name="mapZoomLevel" label="Map Zoom Level" Description="Map zoom level"  />
+    <design:attribute name="mapIconField" label="SObject Field For Map Icon" Description="SObject field that returns URL to image resource"  />
+    <design:attribute name="mapMarkerField" label="SObject Field For Marker HTML" Description="SObject field that returns HTML string for marker pop-up window"  />
+    <design:attribute name="mapHeight" label="Height of map in pixels" Description="Height of map in pixels"  />
+    <design:attribute name="mapOnly" datasource="true,false" default="true" label="Only show records that have geo location" Description="Only show records that have geo location"  />
+    <design:attribute name="extraWhereClause" label="Extra Where Clause" Description="Static where clause to append for constraining records returned"  />
+</design:component>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Location__c</fullName>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <inlineHelpText>The Latitude and Longitude in decimal format.</inlineHelpText>
+        <label>Location</label>
+        <required>false</required>
+        <scale>10</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>MapIcon__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260)) &amp; 
+CASE( Type, 
+&quot;Animal Control&quot;, &quot;resource/CaseType/OneCityAnimalInactive.png&quot;, 
+&quot;Events&quot;, &quot;resource/CaseType/OneCityEventsInactive.png&quot;, 
+&quot;General Inquiry&quot;, &quot;resource/CaseType/OneCityGeneralInactive.png&quot;, 
+&quot;Licensing and Permitting&quot;, &quot;resource/CaseType/OneCityPermitInactive.png&quot;, 
+&quot;Noise&quot;, &quot;resource/CaseType/OneCityNoiseInactive.png&quot;, 
+&quot;Public Works&quot;, &quot;resource/CaseType/OneCityPublicWorksInactive.png&quot;, 
+&quot;Street and Traffic&quot;, &quot;resource/CaseType/OneCityStreetInactive.png&quot;, 
+&quot;resource/CaseType/OneCityNoTypeInactive.png&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MapIcon</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MarkerHTML__c</fullName>
+        <externalId>false</externalId>
+        <formula>&apos;&lt;h3&gt;&lt;a href=\&quot;@ID@\&quot;&gt;[&apos; +  CaseNumber  + &apos;] &apos; + Subject + &apos;&lt;/a&gt;&lt;/h3&gt;&apos; +
+                            &apos;&lt;table&gt;&lt;tr&gt;&lt;td valign=&quot;top&quot; style=&quot;padding-right: 10px;&quot;&gt;&apos; +
+                            &apos;&lt;/td&gt;&lt;td&gt;&apos; +
+                            &apos;&lt;br/&gt;&lt;b&gt;Type:&lt;/b&gt; &apos; + TEXT(Type) + 
+                            &apos;&lt;br/&gt;&lt;b&gt;Status:&lt;/b&gt; &apos; + TEXT(Status) + 
+                            &apos;&lt;br/&gt;&lt;b&gt;Priority:&lt;/b&gt; &apos; + TEXT(Priority) +
+                            &apos;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>MarkerHTML</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>
