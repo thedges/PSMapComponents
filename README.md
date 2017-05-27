@@ -62,7 +62,7 @@ The following is example of the map component on a record.
   - <b>Height of map in pixels</b> - Height of map in pixels
   
 ## PSAccessTracker
-The following is example of the component showing cases.
+The following is example of the component logging lat/lng and address to child object.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/recordaccess.png "Sample Image")
 
