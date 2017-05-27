@@ -71,7 +71,7 @@ The following is example of the component logging lat/lng and address to child o
   - When someone accesses the record, it will capture the current lat/lng of the user and store in the related child object. If address field exists, it will also perform reverse geocode and store the address.
 * The component configuration fields are:
   - <b>Child SObject API Name To Update</b> - The child SObject API name to add current geolocation to
-  - <b>Child SObject Field API Name (Parent)</b> - The child SObject field API name to the parent object
+  - <b>Child SObject Field API Name (Parent)</b> - The child SObject field API name to the parent object (lookup or master-detail field)
   - <b>Child SObject Field API Name (Latitude)</b> - The child SObject field API name to store latitude 
   - <b>Child SObject Field API Name (Longitude)</b> - The child SObject field API name to store longitude 
   - <b>Child SObject Field API Name (Address)</b> - The child SObject field API name to store full address 
