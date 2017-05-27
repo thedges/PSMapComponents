@@ -1,8 +1,8 @@
 # PSMapComponents
 This package includes variety of map/GIS related demo components:
-* PSObjectSearch - 
-* PSRecordLocator - 
-* PSAccessTracker - 
+* PSObjectSearch - component to search records on object and display in map and table
+* PSRecordLocator - component to plot on map current location of record; also can move map and set current location
+* PSAccessTracker - invisible component to capture the latitude/longitude (and optionally, street address) of person accessing the record
 
 <b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) package first
 
@@ -37,6 +37,27 @@ The following is example of the component showing cases.
   - <b>Only show records that have geolocation</b> - true/false value to determine if only records that have lat/lng values are shown or if all values matching the filter criteria are shown
   - <b>Additional Where Clause</b> - static where clause statement to be added to query to filter records
 
+## PSRecordLocator
+The following is example of the component showing cases.
+
+![alt text](https://github.com/thedges/PSMapComponents/blob/master/geotest.png "Sample Image")
+
+<b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
+
+* Creates a lightning component with main purpose to show records on a map. It has 3 primary sections:
+  - A configurable section for filtering the data
+  - A map section for showing records on a map with pin popup
+  
+## PSAccessTracker
+The following is example of the component showing cases.
+
+![alt text](https://github.com/thedges/PSMapComponents/blob/master/recordaccess.png "Sample Image")
+
+<b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
+
+* Creates a lightning component with main purpose to show records on a map. It has 3 primary sections:
+  - A configurable section for filtering the data
+  - A map section for showing records on a map with pin popup
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
