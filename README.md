@@ -2,7 +2,7 @@
 
 The following is example of the component showing cases.
 
-![alt text](https://github.com/thedges/PSObjectSearch/blob/master/PSObjectMap.png "Sample Image")
+![alt text](https://github.com/thedges/PSMapComponents/blob/master/PSObjectMap.png "Sample Image")
 
 <b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
 
