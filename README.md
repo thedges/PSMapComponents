@@ -1,8 +1,8 @@
 # PSMapComponents
 This package includes variety of map/GIS related demo components:
-* PSObjectSearch - component to search records on object and display in map and table
-* PSRecordLocator - component to plot on map current location of record; also can move map and set current location
-* PSAccessTracker - invisible component to capture the latitude/longitude (and optionally, street address) of person accessing the record
+* <b>PSObjectSearch</b> - component to search records on object and display in map and table
+* <b>PSRecordLocator</b> - component to plot on map current location of record; also can move map and set current location
+* <b>PSAccessTracker</b> - invisible component to capture the latitude/longitude (and optionally, street address) of person accessing the record
 
 <b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) package first
 
@@ -38,26 +38,44 @@ The following is example of the component showing cases.
   - <b>Additional Where Clause</b> - static where clause statement to be added to query to filter records
 
 ## PSRecordLocator
-The following is example of the component showing cases.
+The following is example of the map component on a record.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/geotest.png "Sample Image")
 
-<b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
+<b>WARNING:</b> This component uses both Leaflet (1.0.2). Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
 
-* Creates a lightning component with main purpose to show records on a map. It has 3 primary sections:
-  - A configurable section for filtering the data
-  - A map section for showing records on a map with pin popup
+* Features of the component:
+  - If lat/lng location already exists on record, it will center on that location
+  - Move the map to new location and address will show in bottom of map. Click on address location and it will set fields on the record.
+  - A "locate me" icon will show in top-right of map. This icon shows once the component captures your current location. Just click this to move to your current location.
+* The component configuration fields are:
+  - <b>SObject Field For Latitude</b> - SObject field that stores the latitude value
+  - <b>SObject Field For Longitude</b> - SObject field that stores the longitude value
+  - <b>SObject Field For Full Address</b> - SObject field that stores full address in one value
+  - <b>SObject Field For Street</b> - SObject field that stores the street
+  - <b>SObject Field For City</b> - SObject field that stores the city
+  - <b>SObject Field For State</b> - SObject field that stores the state
+  - <b>SObject Field For Postal/Zipcode</b> - SObject field that stores postal/zip code
+  - <b>Map Center Latitude</b> - Default latitude for center of map
+  - <b>Map Center Longitude</b> - Default longitude for center of map
+  - <b>Map Zoom Level</b> - Default map zoom level
+  - <b>Height of map in pixels</b> - Height of map in pixels
   
 ## PSAccessTracker
 The following is example of the component showing cases.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/recordaccess.png "Sample Image")
 
-<b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
-
-* Creates a lightning component with main purpose to show records on a map. It has 3 primary sections:
-  - A configurable section for filtering the data
-  - A map section for showing records on a map with pin popup
+* Features of the component:
+  - Just drop the component on a record page and configure it's properties
+  - When someone accesses the record, it will capture the current lat/lng of the user and store in the related child object. If address field exists, it will also perform reverse geocode and store the address.
+* The component configuration fields are:
+  - <b>Child SObject API Name To Update</b> - The child SObject API name to add current geolocation to
+  - <b>Child SObject Field API Name (Parent)</b> - The child SObject field API name to the parent object
+  - <b>Child SObject Field API Name (Latitude)</b> - The child SObject field API name to store latitude 
+  - <b>Child SObject Field API Name (Longitude)</b> - The child SObject field API name to store longitude 
+  - <b>Child SObject Field API Name (Address)</b> - The child SObject field API name to store full address 
+  
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
