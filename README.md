@@ -74,7 +74,7 @@ The following is example of the component logging lat/lng and address to child o
   - <b>Child SObject Field API Name (Parent)</b> - The child SObject field API name to the parent object (lookup or master-detail field)
   - <b>Child SObject Field API Name (Latitude)</b> - The child SObject field API name to store latitude 
   - <b>Child SObject Field API Name (Longitude)</b> - The child SObject field API name to store longitude 
-  - <b>Child SObject Field API Name (Address)</b> - The child SObject field API name to store full address 
+  - <b>Child SObject Field API Name (Address)</b> - The child SObject field API name to store full address (optional: leave blank if you don't need address)
   
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
