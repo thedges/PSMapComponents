@@ -4,7 +4,7 @@ This package includes variety of map/GIS related demo components:
 * <b>PSRecordLocator</b> - component to plot on map current location of record; also can move map and set current location
 * <b>PSAccessTracker</b> - invisible component to capture the latitude/longitude (and optionally, street address) of person accessing the record
 
-<b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) package first
+<b>Dependency:</b> Install the [PSCommon](https://github.com/thedges/PSCommon) and [LightningStrike.io](https://github.com/thedges/Lightning-Strike) packages first
 
 ## PSObjectSearch
 The following is example of the component showing cases.
