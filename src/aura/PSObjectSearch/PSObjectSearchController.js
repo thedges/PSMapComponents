@@ -7,7 +7,13 @@
     },
     doInit: function(component, event, helper) {
         //console.log("doInit called");
+
+        navigator.geolocation.getCurrentPosition(function(location) {
+          component.set("v.currLat", location.coords.latitude);
+          component.set("v.currLng", location.coords.longitude);
+        });
         
+        helper.initRadiusParams(component);
         helper.setRuntimeEnv(component);
         helper.initFilterParams(component);
         helper.initTableParams(component);

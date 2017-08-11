@@ -16,10 +16,14 @@
   <aura:attribute name="markersLayerList" type="List" />
   <aura:attribute name="runtimeEnv" type="object" />
 
+  <aura:attribute name="currLat" type="String" access="global" />
+  <aura:attribute name="currLng" type="String" access="global" />
+
   <!-- Event Handlers -->
   <aura:handler event="c:PSRefreshMapEvent" action="{!c.handleMapRefresh}" />
 
   <div class="slds-p-top--medium">
     <div id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+
   </div>
 </aura:component>

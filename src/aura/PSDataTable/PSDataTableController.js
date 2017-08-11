@@ -12,6 +12,7 @@
         for (var i=0; i<recs.length; i++)
         {
            var objRec = recs[i];
+           console.log(JSON.stringify(objRec));
 
             if (objtype === 'Case' && objRec.hasOwnProperty('CaseNumber'))
             {
@@ -25,7 +26,7 @@
                  objRec.CaseNumber = '<a href="' + rtEnv.baseURL + objRec.Id + '/view">' + objRec.CaseNumber + '</a>';
                }
             }
-            else if (fldArr[i] === objRec.hasOwnProperty('Name'))
+            else if (objRec.hasOwnProperty('Name'))
             {
                if (rtEnv.env === 'community')
                {
@@ -38,7 +39,6 @@
             }
             
         }
-
 
         try {
             $('#recordTable').DataTable().clear().rows.add(jQuery.parseJSON(JSON.stringify(recs))).draw();

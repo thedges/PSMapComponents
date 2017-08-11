@@ -5,6 +5,7 @@
     <design:attribute name="filterButton" label="Filter Button Label" Description="Text for filter button" />
     <design:attribute name="filterFields" label="SObject Fields To Filter On" Description="Comma separated list of fields to filter on" />
     <design:attribute name="tableFields" label="SObject Fields To Show in Table" Description="Comma separated list of fields to show in table"  />
+    <design:attribute name="radiusCSV" label="CSV list of radius value (miles)" Description="Comma separated list of radius values (miles). Put * in front of default value." />
     <design:attribute name="mapLatField" label="SObject Field For Latitude" Description="SObject field that stores the latitude value"  />
     <design:attribute name="mapLngField" label="SObject Field For Longitude" Description="SObject field that stores the longitude value"  />
     <design:attribute name="mapCenterLat" label="Map Center Latitude" Description="Latitude for center of map"  />

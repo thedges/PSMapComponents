@@ -12,6 +12,34 @@
                 attribution: 'Tiles © Esri'
             }).addTo(map);
         markersLayer.addTo(map);
+
+        navigator.geolocation.getCurrentPosition(function(location) {
+            console.log(location.coords.latitude);
+            console.log(location.coords.longitude);
+            console.log(location.coords.accuracy);
+
+            map.setView([location.coords.latitude, location.coords.longitude], 11);
+        });
+
+        ///////////////////////////////////////////
+        // create cross to keep at center of map //
+        ///////////////////////////////////////////
+        var crosshairIcon = L.icon({
+            iconUrl: $A.get('$Resource.mapCrosshair3'),
+            iconSize: [50, 50] // size of the icon
+        });
+        console.log('setting crosshair center=' + map.getCenter());
+        crosshair = new L.marker(map.getCenter(), {
+            icon: crosshairIcon,
+            clickable: false
+        });
+        crosshair.addTo(map);
+
+        map.on('move', function(e) {
+            crosshair.setLatLng(map.getCenter());
+            component.set("v.currLat", map.getCenter().lat);
+            component.set("v.currLng", map.getCenter().lng);
+        });
         /*
         var kmlLayer = new L.KML("https://raw.githubusercontent.com/thedges/Test1/master/City_Council_Districts.kml", {async: true});
                                                               
@@ -61,7 +89,7 @@
                         .setContent(cs[mapMarkerField]);
 
                     console.log('Icon__c=' + cs[mapIconField]);
-          
+
                     var myIcon = L.icon({ iconUrl: cs[mapIconField].replace('/sfsites/c', ''), iconSize: [32, 32] });
                     var marker = L.marker(latLng, { icon: myIcon });
                     marker.bindPopup(popup);
@@ -70,7 +98,7 @@
             }
             var map = component.get("v.map");
             var bounds = new L.latLngBounds(locationCoor);
-            map.fitBounds(bounds, { padding: [50, 50] });
+            //map.fitBounds(bounds, { padding: [50, 50] });
         }
     }
 })
