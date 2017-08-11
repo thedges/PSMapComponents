@@ -26,6 +26,7 @@ The following is example of the component showing cases.
   - <b>Filter Button Label</b> - the label for the search button
   - <b>SObject Fields to Filter On</b> - comma separated list of field API names to provide search/filter capabilites; currently only supports text and picklist fields
   - <b>SObject Fields to Show in Table</b> - comma separated list of field API names to show as columns in the table; if you leave this field blank then table will not show
+  - <b>CSV list of radius values (miles)</b> - comma separated list of radius values in miles; put * next to value you want to be the default; if you don't want to search by radius, just set to blank value
   - <b>SObject Field for Latitide</b> - the field API name for the latitude value.
   - <b>SObject Field for Longitude</b> - the field API name for the longitude value
   - <b>Map Center Latitude</b> - the default latitude value for centering the map
