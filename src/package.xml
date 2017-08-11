@@ -28,6 +28,8 @@
         <members>leaflet_1_0_2</members>
         <members>lodash</members>
         <members>mapCrosshair</members>
+        <members>mapCrosshair2</members>
+        <members>mapCrosshair3</members>
         <members>mapLocateMe</members>
         <name>StaticResource</name>
     </types>
