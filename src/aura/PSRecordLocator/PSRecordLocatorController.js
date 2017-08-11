@@ -2,9 +2,15 @@
   jsLoaded: function(component, event, helper) {
     console.log("jsLoaded called");
 
+    //////////////////////////////////////
+    // set default map lat/lng location //
+    //////////////////////////////////////
     component.set("v.latitude", component.get("v.mapCenterLat"));
     component.set("v.longitude", component.get("v.mapCenterLng"));
 
+    //////////////////////////////////////
+    // get the current lat/lng location //
+    //////////////////////////////////////
     navigator.geolocation.getCurrentPosition(function(location) {
       component.set("v.origLat", location.coords.latitude);
       component.set("v.origLng", location.coords.longitude);
@@ -13,11 +19,18 @@
       $A.util.removeClass(target, 'hide');
     });
 
+    //////////////////////////////////////////////
+    // load the current record lat/lng location //
+    //////////////////////////////////////////////
     helper.loadRecordLocation(component);
   },
   saveLocation: function(component, event, helper) {
     console.log('saveLocation called...');
 
+
+    ////////////////////////////////////////////////////
+    // create a parameter list to send to Apex method //
+    ////////////////////////////////////////////////////
     var map = {};
 
     map['recordId'] = component.get('v.recordId');
@@ -39,11 +52,17 @@
 
     console.log('paramMap=' + JSON.stringify(map));
 
+    //////////////////////////////////////////////
+    // setup call to the Apex controller method //
+    //////////////////////////////////////////////
     var action = component.get("c.saveRecordLocation");
     action.setParams({
       "params": JSON.stringify(map)
     });
 
+    //////////////////////////////////////////////////
+    // setup the callback function for the response //
+    //////////////////////////////////////////////////
     action.setCallback(self, function(a) {
       console.log(a.getReturnValue());
       var resp = JSON.parse(a.getReturnValue());
@@ -57,7 +76,10 @@
         component.set('v.fullAddress', resp.msg);
       }
     });
-    // Enqueue the action
+    
+    //////////////////////////////////
+    // execute the Apex method call //
+    //////////////////////////////////
     $A.enqueueAction(action);
 
   },

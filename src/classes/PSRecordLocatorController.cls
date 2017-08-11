@@ -16,14 +16,24 @@ public class PSRecordLocatorController
 
     PSResponse resp = new PSResponse();
 
+    //////////////////////////////////////
+    // get the ID of the current record //
+    //////////////////////////////////////
     String recordId = paramMap.get('recordId');
 
     try
     {
       Id recId = Id.valueOf(recordId);
+
+      ////////////////////////////////////
+      // get metadata of current object //
+      ////////////////////////////////////
       Schema.SObjectType objType = recId.getSObjectType();
       Schema.DescribeSObjectResult dr = objType.getDescribe();
 
+      /////////////////////////////////////////////////////////
+      // create a generic SObject to update values on record //
+      /////////////////////////////////////////////////////////
       SObject sObj = Schema.getGlobalDescribe().get(dr.getName()).newSObject();
       sObj.put('Id', recId);
 
@@ -44,8 +54,7 @@ public class PSRecordLocatorController
       resp.status = PSResponse.ERROR;
       resp.msg = e.getMessage();
     }
-
-
+      
     return  JSON.serialize(resp);
   }
 

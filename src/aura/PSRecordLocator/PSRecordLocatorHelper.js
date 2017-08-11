@@ -1,4 +1,48 @@
 ({
+  loadRecordLocation: function(component) {
+    var self = this;
+    console.log('loadRecordLocation invoked...');
+
+    var paramMap = {};
+
+    paramMap['recordId'] = component.get('v.recordId');
+    paramMap['mapLatField'] = component.get('v.mapLatField');
+    paramMap['mapLngField'] = component.get('v.mapLngField');
+
+    var action = component.get("c.getCurrLocation");
+    action.setParams({
+      "params": JSON.stringify(paramMap)
+    });
+
+    action.setCallback(self, function(a) {
+      console.log(a.getReturnValue());
+      var resp = JSON.parse(a.getReturnValue());
+
+      var map = component.get('v.map');
+      if (resp.status === 'ERROR') {
+        console.log('getCurrentPosition');
+        navigator.geolocation.getCurrentPosition(function(location) {
+          component.set("v.latitude", location.coords.latitude);
+          component.set("v.longitude", location.coords.longitude);
+          component.set("v.mapZoomLevel", 14);
+
+          self.createMap(component);
+          self.reverseGeocodeEsri(component, location.coords.latitude, location.coords.longitude);
+        });
+      } else {
+        console.log('data=' + resp.data);
+        component.set("v.latitude", resp.data.latitude);
+        component.set("v.longitude", resp.data.longitude);
+        component.set("v.mapZoomLevel", 14);
+
+        self.createMap(component);
+      }
+
+    });
+
+    // Enqueue the action
+    $A.enqueueAction(action);
+  },
   reverseGeocodeEsri: function(component, lat, lng) {
     console.log('reverseGeocodeEsri invoked...');
     var action = component.get("c.reverseGeocodeEsri");
@@ -23,7 +67,6 @@
 
         var target = component.find("addressDiv");
         $A.util.removeClass(target, 'hide');
-
       }
 
     });
@@ -90,49 +133,5 @@
       self.reverseGeocodeEsri(component, coords.lat, coords.lng);
     });
 
-  },
-  loadRecordLocation: function(component) {
-    var self = this;
-    console.log('loadRecordLocation invoked...');
-
-    var paramMap = {};
-
-    paramMap['recordId'] = component.get('v.recordId');
-    paramMap['mapLatField'] = component.get('v.mapLatField');
-    paramMap['mapLngField'] = component.get('v.mapLngField');
-
-    var action = component.get("c.getCurrLocation");
-    action.setParams({
-      "params": JSON.stringify(paramMap)
-    });
-
-    action.setCallback(self, function(a) {
-      console.log(a.getReturnValue());
-      var resp = JSON.parse(a.getReturnValue());
-
-      var map = component.get('v.map');
-      if (resp.status === 'ERROR') {
-        console.log('getCurrentPosition');
-        navigator.geolocation.getCurrentPosition(function(location) {
-          component.set("v.latitude", location.coords.latitude);
-          component.set("v.longitude", location.coords.longitude);
-          component.set("v.mapZoomLevel", 14);
-
-          self.createMap(component);
-          self.reverseGeocodeEsri(component, location.coords.latitude, location.coords.longitude);
-        });
-      } else {
-        console.log('data=' + resp.data);
-        component.set("v.latitude", resp.data.latitude);
-        component.set("v.longitude", resp.data.longitude);
-        component.set("v.mapZoomLevel", 14);
-
-        self.createMap(component);
-      }
-
-    });
-
-    // Enqueue the action
-    $A.enqueueAction(action);
   }
 })
