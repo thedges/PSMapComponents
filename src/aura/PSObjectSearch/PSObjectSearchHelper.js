@@ -137,6 +137,21 @@
         return retStr;
 
     },
+    getOptionValue: function(field)
+    {
+       var val = field.value;
+
+       for (var i = 0; i < field.options.length; i++) 
+       {
+         var fldOption = field.options[i];
+         if (fldOption.label == field.value)
+         {
+           val = fldOption.value;
+         }
+       }
+
+        return val;
+    },
     createSOQL: function(component) {
         console.log('createSOQL called...');
         var self = this;
@@ -190,7 +205,16 @@
                 if (filterFieldComps[i].value !== null && filterFieldComps[i].value != "" && filterFieldComps[i].value != "--None--") {
                     if (filterFieldComps[i].ftype == 'picklist') {
                         console.log('found picklist');
-                        cls = filterFieldComps[i].name + " = '" + filterFieldComps[i].value + "'";
+                        //cls = filterFieldComps[i].name + " = '" + filterFieldComps[i].value + "'";
+
+                        if (filterFieldComps[i].wildcard == true)
+                        {
+                          cls = filterFieldComps[i].name + " LIKE '%" + this.getOptionValue(filterFieldComps[i]) + "%'";
+                        }
+                        else
+                        {
+                          cls = filterFieldComps[i].name + " = '" + this.getOptionValue(filterFieldComps[i]) + "'";
+                        }
                     } else if (filterFieldComps[i].ftype == 'string') {
                         console.log('found string');
                         if (filterFieldComps[i].value.includes('%') || filterFieldComps[i].value.includes('%')) {
