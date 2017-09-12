@@ -106,7 +106,8 @@
     // create cross to keep at center of map //
     ///////////////////////////////////////////
     var crosshairIcon = L.icon({
-      iconUrl: '/resource/mapCrosshair',
+      //iconUrl: '/resource/mapCrosshair',
+      iconUrl: $A.get('$Resource.mapCrosshair'),
       iconSize: [200, 200] // size of the icon
     });
     console.log('setting crosshair center=' + map.getCenter());

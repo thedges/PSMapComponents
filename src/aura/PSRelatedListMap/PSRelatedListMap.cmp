@@ -1,0 +1,43 @@
+<aura:component access="global" controller="PSRelatedListMapController" implements="force:hasRecordId,flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes" >
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:attribute name="childObject" type="String" default="" />
+    <aura:attribute name="parentField" type="String" default="" />
+    <aura:attribute name="mapLatField" type="String" default="Location__Latitude__s" />
+    <aura:attribute name="mapLngField" type="String" default="Location__Longitude__s" />
+    <aura:attribute name="mapCenterLat" type="String" default="30.267811" />
+    <aura:attribute name="mapCenterLng" type="String" default="-97.744328" />
+    <aura:attribute name="mapIconField" type="String" default="MapIcon__c" />
+    <aura:attribute name="mapMarkerField" type="String" default="MarkerHTML__c" />
+    <aura:attribute name="mapZoomLevel" type="Integer" default="11" />
+    <aura:attribute name="mapHeight" type="String" default="500" />
+    
+    <!-- RUNTIME ATTRIBUTES -->
+    <aura:attribute name="parentObject" type="String" />
+    <aura:attribute name="recList" type="List" />
+    <aura:attribute name="map" type="Object" />
+    <aura:attribute name="currLat" type="String" />
+    <aura:attribute name="currLng" type="String" />
+    <aura:attribute name="markersLayerList" type="List" />
+    <aura:attribute name="errorMsg" type="String" />
+    
+    <!-- EVENT HANDLERS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:PSObjectMapInitCompleteEvent" action="{!c.handleMapInitComplete}" />
+    <aura:handler event="aura:locationChange" action="{!c.destroyCmp}"/>
+    <aura:registerEvent name="refreshMap" type="c:PSRefreshMapEvent" />
+    
+    <div class="container">
+        <aura:if isTrue="{!v.errorMsg.length > 0}">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.errorMsg}
+            </ui:message>
+        </aura:if>
+        <div class="slds-grid slds-wrap slds-grid--pull-padded">
+            <div class="slds-p-horizontal--small slds-size--1-of-1">
+                <fieldset class="slds-box slds-theme--default">
+                    <c:PSObjectMap recList="{!v.recList}" mapCenterLat="{!v.mapCenterLat}" mapCenterLng="{!v.mapCenterLng}" mapLatField="{!v.mapLatField}" mapLngField="{!v.mapLngField}" mapZoomLevel="{!v.mapZoomLevel}" mapIconField="{!v.mapIconField}" mapMarkerField="{!v.mapMarkerField}" mapHeight="{!v.mapHeight}" currLat="{!v.currLat}" currLng="{!v.currLng}" showCrosshair="false" autoCenter="false"/>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</aura:component>

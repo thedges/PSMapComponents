@@ -1,0 +1,11 @@
+.THIS #mapContainer {
+	position: relative;
+}
+
+.THIS #locateDiv {
+	position: absolute; top: 0px; right: 0px; z-index: 999; padding: 3px; 
+}
+
+.THIS .hide {
+    display: none;
+}

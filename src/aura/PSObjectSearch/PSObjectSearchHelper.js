@@ -267,7 +267,14 @@
         }
 
         if (component.get('v.radiusCSV') != null && component.get('v.radiusCSV').length > 0) {
-            cls = "DISTANCE(Location__c, GEOLOCATION(" + component.get('v.currLat') + "," + component.get('v.currLng') + "), 'mi') < " + component.get('v.radius');
+            var gpsField = "Location__c";
+            
+            if (mapLatField != null)
+            {
+                gpsField = mapLatField.substring(0, mapLatField.length-13) + "__c";
+            }
+            
+            cls = "DISTANCE(" + gpsField + ", GEOLOCATION(" + component.get('v.currLat') + "," + component.get('v.currLng') + "), 'mi') < " + component.get('v.radius');
             if (soqlWhere == "") {
                 soqlWhere += "WHERE " + cls;
             } else {

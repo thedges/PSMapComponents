@@ -10,6 +10,9 @@
   <aura:attribute name="mapIconField" type="String" default="IconField__c" required="true" access="global" />
   <aura:attribute name="mapMarkerField" type="String" default="MarkerHTML__c" required="true" access="global" />
   <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
+  <aura:attribute name="showCrosshair" type="Boolean" default="true" access="global" />
+  <aura:attribute name="autoCenter" type="Boolean" default="true" access="global" />
+  <aura:attribute name="fitBounds" type="Boolean" default="true" access="global" />
 
   <aura:attribute name="filterFieldComps" type="List" />
   <aura:attribute name="map" type="Object" />
@@ -18,12 +21,20 @@
 
   <aura:attribute name="currLat" type="String" access="global" />
   <aura:attribute name="currLng" type="String" access="global" />
+  <aura:attribute name="origLat" type="String" />
+  <aura:attribute name="origLng" type="String" />
 
   <!-- Event Handlers -->
   <aura:handler event="c:PSRefreshMapEvent" action="{!c.handleMapRefresh}" />
+  <aura:registerEvent name="mapInitComplete" type="c:PSObjectMapInitCompleteEvent" />
 
   <div class="slds-p-top--medium">
-    <div id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+    <div aura:id="mapContainer" id="mapContainer">
+      <div id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+
+      <!-- the locate me icon -->
+      <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="{!$Resource.mapLocateMe}" height="42" width="42" onclick="{!c.centerOnLocation}" /></div>
+    </div>
 
   </div>
 </aura:component>

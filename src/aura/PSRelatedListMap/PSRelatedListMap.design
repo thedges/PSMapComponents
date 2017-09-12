@@ -1,0 +1,12 @@
+<design:component label="Related List Map">
+	<design:attribute name="childObject" label="SObject API Name of Child Object" Description="SObject API Name of Child Object"  />
+	<design:attribute name="parentField" label="SObject Field For Parent Id" Description="SObject field on child object that stores the parent object id"  />
+	<design:attribute name="mapLatField" label="SObject Field For Latitude" Description="SObject field on child object that stores the latitude value"  />
+    <design:attribute name="mapLngField" label="SObject Field For Longitude" Description="SObject field on child object that stores the longitude value"  />
+    <design:attribute name="mapCenterLat" label="Map Center Latitude" Description="Latitude for center of map (default)"  />
+    <design:attribute name="mapCenterLng" label="Map Center Longitude" Description="Longitude for center of map (default)"  />
+    <design:attribute name="mapIconField" label="SObject Field For Map Icon" Description="SObject field on child object that returns URL to image resource"  />
+    <design:attribute name="mapMarkerField" label="SObject Field For Marker HTML" Description="SObject field on child object that returns HTML string for marker pop-up window"  />
+    <design:attribute name="mapZoomLevel" label="Map Zoom Level" Description="Map zoom level (default)"  />
+    <design:attribute name="mapHeight" label="Height of map in pixels" Description="Height of map in pixels"  />
+</design:component>

@@ -10,10 +10,12 @@
         <members>PSAccessTracker</members>
         <members>PSDataTable</members>
         <members>PSObjectMap</members>
+        <members>PSObjectMapInitCompleteEvent</members>
         <members>PSObjectSearch</members>
         <members>PSRecordLocator</members>
         <members>PSRefreshDataTableEvent</members>
         <members>PSRefreshMapEvent</members>
+        <members>PSRelatedListMap</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

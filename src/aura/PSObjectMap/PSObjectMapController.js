@@ -1,11 +1,19 @@
 ({
     jsLoaded: function(component, event, helper) {
         console.log("jsLoaded called");
+
         var markersLayer = new L.LayerGroup();
         var markersLayerList = [];
         markersLayerList.push(markersLayer);
-        var map = L.map('map', { zoomControl: true, boxZoom: true, trackResize: true, doubleClickZoom: true })
-            .setView([parseFloat(component.get("v.mapCenterLat")), parseFloat(component.get("v.mapCenterLng"))], component.get("v.mapZoomLevel"));
+
+        var map = component.get("v.map");
+
+        if (map !== undefined || map !== null) {
+            map = L.map('map', { zoomControl: true, boxZoom: true, trackResize: true, doubleClickZoom: true })
+                .setView([parseFloat(component.get("v.mapCenterLat")), parseFloat(component.get("v.mapCenterLng"))], component.get("v.mapZoomLevel"));
+        }
+
+        console.log('setting tile layer...');
         map.attributionControl.setPrefix('');
         L.tileLayer(
             'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -18,25 +26,36 @@
             console.log(location.coords.longitude);
             console.log(location.coords.accuracy);
 
-            map.setView([location.coords.latitude, location.coords.longitude], 11);
+            component.set("v.origLat", location.coords.latitude);
+            component.set("v.origLng", location.coords.longitude);
+
+            var target = component.find("locateDiv");
+            $A.util.removeClass(target, 'hide');
+
+            if (component.get("v.autoCenter")) {
+                map.setView([location.coords.latitude, location.coords.longitude], component.get("v.mapZoomLevel"));
+            }
         });
+
 
         ///////////////////////////////////////////
         // create cross to keep at center of map //
         ///////////////////////////////////////////
-        var crosshairIcon = L.icon({
-            iconUrl: $A.get('$Resource.mapCrosshair3'),
-            iconSize: [50, 50] // size of the icon
-        });
-        console.log('setting crosshair center=' + map.getCenter());
-        crosshair = new L.marker(map.getCenter(), {
-            icon: crosshairIcon,
-            clickable: false
-        });
-        crosshair.addTo(map);
+        if (component.get("v.showCrosshair")) {
+            var crosshairIcon = L.icon({
+                iconUrl: $A.get('$Resource.mapCrosshair3'),
+                iconSize: [50, 50] // size of the icon
+            });
+            console.log('setting crosshair center=' + map.getCenter());
+            crosshair = new L.marker(map.getCenter(), {
+                icon: crosshairIcon,
+                clickable: false
+            });
+            crosshair.addTo(map);
+        }
 
         map.on('move', function(e) {
-            crosshair.setLatLng(map.getCenter());
+            if (component.get("v.showCrosshair")) crosshair.setLatLng(map.getCenter());
             component.set("v.currLat", map.getCenter().lat);
             component.set("v.currLng", map.getCenter().lng);
         });
@@ -52,7 +71,9 @@
         component.set("v.map", map);
         component.set("v.markersLayerList", markersLayerList);
         helper.setRuntimeEnv(component);
-        console.warn("jsLoaded ended");
+        console.log("jsLoaded ended");
+
+        $A.get("e.c:PSObjectMapInitCompleteEvent").fire();
     },
     handleMapRefresh: function(component, event) {
         console.log("heard map refesh!");
@@ -97,8 +118,24 @@
                 }
             }
             var map = component.get("v.map");
-            var bounds = new L.latLngBounds(locationCoor);
-            //map.fitBounds(bounds, { padding: [50, 50] });
+
+            if (locationCoor.length > 0) {
+                var bounds = new L.latLngBounds(locationCoor);
+                console.log("bounds=" + JSON.stringify(bounds));
+
+                if (bounds != undefined || bounds != null) {
+                    if (component.get("v.fitBounds")) map.fitBounds(bounds, { padding: [50, 50] });
+                }
+            }
         }
+    },
+    centerOnLocation: function(component, event, helper) {
+        console.log('centerOnLocation called...');
+        var self = this;
+
+        var map = component.get("v.map");
+        var lat = component.get("v.origLat");
+        var lng = component.get("v.origLng");
+        map.setView([lat, lng]);
     }
 })
