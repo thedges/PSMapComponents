@@ -1,17 +1,21 @@
 # PSMapComponents
 This package includes variety of map/GIS related demo components:
 * <b>PSObjectSearch</b> - component to search records on object and display in map and table
+* <b>PSRelatedListMap</b> - component to plot on map location of child records based on parent record
 * <b>PSRecordLocator</b> - component to plot on map current location of record; also can move map and set current location
 * <b>PSAccessTracker</b> - invisible component to capture the latitude/longitude (and optionally, street address) of person accessing the record
 
 <b>Dependency:</b> Install the [LightningStrike.io](https://github.com/thedges/Lightning-Strike) and [PSCommon](https://github.com/thedges/PSCommon) packages first
 
+<a href="https://githubsfdeploy.herokuapp.com">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
 ## PSObjectSearch
 The following is example of the component showing cases.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/PSObjectMap.png "Sample Image")
-
-<b>WARNING:</b> This component uses both Leaflet (1.0.2) and JQuery DataTable (1.10.12) JavaScript libraries. Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
 
 * Creates a lightning component with main purpose to show records on a map. It has 3 primary sections:
   - A configurable section for filtering the data
@@ -39,11 +43,9 @@ The following is example of the component showing cases.
   - <b>Additional Where Clause</b> - static where clause statement to be added to query to filter records
 
 ## PSRecordLocator
-The following is example of the map component on a record.
+Use this component to drop on record to show current location. You can move map to new location and component will do a reverse address lookup based on location of crosshair. Click on address at bottom of window to set the record lat/lng and address fields. The following is example of the map component on a record.
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/geotest.png "Sample Image")
-
-<b>WARNING:</b> This component uses both Leaflet (1.0.2). Currently LockerService breaks the map component using the Leaflet library. Supposedly this will be fixed in the Summer '17 (208) release.
 
 * Features of the component:
   - If lat/lng location already exists on record, it will center on that location
@@ -62,6 +64,27 @@ The following is example of the map component on a record.
   - <b>Map Zoom Level</b> - Default map zoom level
   - <b>Height of map in pixels</b> - Height of map in pixels
   
+## PSRelatedListMap
+Use this component on a "parent" object to map all child records of a specific object type. The following is example of this map component on a record showing list of child records in map in top-right side.
+
+![alt text](https://github.com/thedges/PSMapComponents/blob/master/relatedListMap.png "Sample Image")
+
+* Features of the component:
+  - Will load all child records for sobject configured and plot them on map.
+  - Will create custom icon and pop-up text based on MapIconField and mapMarkerField configuration settings
+  - A "find me" icon will show in top-right of map. This icon shows once the component captures your current lat/lng location. Just click this to move to your current location.
+* The component configuration fields are:
+  - <b>SObject API Name of Child Object</b> - the API name of the child sobject to plot the related child records
+  - <b>SObject Field For Parent Id</b> - the field API name of the parent master-detail/lookup field
+  - <b>SObject Field for Latitide</b> - the field API name on child object for the latitude value.
+  - <b>SObject Field for Longitude</b> - the field API name on child object for the longitude value
+  - <b>Map Center Latitude</b> - the default latitude value for centering the map
+  - <b>Map Center Latitude</b> - the default longitude value for centering the map
+  - <b>SObject Field for Map Icon</b> - the field API name on child object for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example
+  - <b>SObject Field For Marker HTML</b> - the field API name on child object for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX)
+  - <b>Map Zoom Level</b> - Default map zoom level
+  - <b>Height of map in pixels</b> - Height of map in pixels  
+  
 ## PSAccessTracker
 The following is example of the component logging lat/lng and address to child object.
 
@@ -77,7 +100,4 @@ The following is example of the component logging lat/lng and address to child o
   - <b>Child SObject Field API Name (Longitude)</b> - The child SObject field API name to store longitude 
   - <b>Child SObject Field API Name (Address)</b> - The child SObject field API name to store full address (optional: leave blank if you don't need address)
   
-<a href="https://githubsfdeploy.herokuapp.com">
-  <img alt="Deploy to Salesforce"
-       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
-</a>
+
