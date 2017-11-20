@@ -4,6 +4,7 @@
         <members>PSAccessTrackerController</members>
         <members>PSObjectSearchController</members>
         <members>PSRecordLocatorController</members>
+        <members>PSRelatedListMapController</members>
         <name>ApexClass</name>
     </types>
     <types>
