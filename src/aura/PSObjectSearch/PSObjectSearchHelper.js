@@ -266,19 +266,23 @@
             }
         }
 
-        if (component.get('v.radiusCSV') != null && component.get('v.radiusCSV').length > 0) {
-            var gpsField = "Location__c";
-            
-            if (mapLatField != null)
-            {
-                gpsField = mapLatField.substring(0, mapLatField.length-13) + "__c";
-            }
-            
-            cls = "DISTANCE(" + gpsField + ", GEOLOCATION(" + component.get('v.currLat') + "," + component.get('v.currLng') + "), 'mi') < " + component.get('v.radius');
-            if (soqlWhere == "") {
-                soqlWhere += "WHERE " + cls;
-            } else {
-                soqlWhere += "\nAND " + cls;
+        var radius = component.get('v.radius');
+        if (radius != null && radius.length > 0)
+        {
+            if (component.get('v.radiusCSV') != null && component.get('v.radiusCSV').length > 0) {
+                var gpsField = "Location__c";
+                
+                if (mapLatField != null)
+                {
+                    gpsField = mapLatField.substring(0, mapLatField.length-13) + "__c";
+                }
+                
+                cls = "DISTANCE(" + gpsField + ", GEOLOCATION(" + component.get('v.currLat') + "," + component.get('v.currLng') + "), 'mi') < " + component.get('v.radius');
+                if (soqlWhere == "") {
+                    soqlWhere += "WHERE " + cls;
+                } else {
+                    soqlWhere += "\nAND " + cls;
+                }
             }
         }
 
