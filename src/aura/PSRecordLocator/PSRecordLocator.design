@@ -1,4 +1,4 @@
-<design:component label="Record Map Locator">
+<design:component label="PSRecordLocator">
     <design:attribute name="mapLatField" label="SObject Field For Latitude" Description="SObject field that stores the latitude value"  />
     <design:attribute name="mapLngField" label="SObject Field For Longitude" Description="SObject field that stores the longitude value"  />
     <design:attribute name="addrField" label="SObject Field For Full Address" Description="SObject field that stores full address in one value"  />

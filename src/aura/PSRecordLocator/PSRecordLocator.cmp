@@ -29,7 +29,7 @@
   <aura:attribute name="runtimeEnv" type="object" />
   <aura:attribute name="mapHTML" type="String" />
 
-  <div class="slds-p-top--medium">
+  <div >
     <div aura:id="mapContainer" id="mapContainer">
       <!-- the map component -->
       <div aura:id="map" id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>

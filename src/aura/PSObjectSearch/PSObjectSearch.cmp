@@ -29,6 +29,8 @@
     <aura:attribute name="errorMsg" type="String" />
     <aura:attribute name="radiusOptionList" type="List"/>
     <aura:attribute name="radius" type="String" default="50"/>
+    <aura:attribute name="runtimeEnv" type="Object" />
+    
     <!-- Event Handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:registerEvent name="refreshMap" type="c:PSRefreshMapEvent" />
@@ -63,8 +65,8 @@
                             </div>
                         </div>
                       </aura:renderIf>
-                        <div class="slds-form-element XXslds-p-top--small">
-                            <ui:button label="{!v.filterButton}" class="slds-button slds-button--brand" labelClass="label" press="{!c.fireFilter}" />
+                        <div class="slds-form-element slds-p-bottom--small">
+                            <ui:button label="{!v.filterButton}" class="slds-button slds-button_inverse" labelClass="label" press="{!c.fireFilter}" />
                         </div>
                     </form>
                     <aura:renderIf isTrue="{!and(and(v.mapLatField != null, v.mapLatField.length > 0), and(v.mapLngField != null, v.mapLngField.length > 0))}">

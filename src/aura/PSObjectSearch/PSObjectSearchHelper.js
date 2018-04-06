@@ -13,7 +13,6 @@
         var self = this; // safe reference
         var filterFields = component.get("v.filterFields");
         var sobject = component.get("v.sobject");
-
         var action = component.get("c.prepFilterFields");
         action.setParams({
             "objtype": sobject,
@@ -29,11 +28,9 @@
     },
     initTableParams: function(component) {
         console.log('initTableParams begin...');
-
         var self = this; // safe reference
         var tableFields = component.get("v.tableFields");
         var sobject = component.get("v.sobject");
-
         var action = component.get("c.prepTableFields");
         action.setParams({
             "objtype": sobject,
@@ -46,17 +43,14 @@
         });
         // Enqueue the action
         $A.enqueueAction(action);
-
     },
     initRadiusParams: function(component) {
         console.log('initRadiusParams begin...');
         var radiusCSV = component.get("v.radiusCSV");
         var optionArr = radiusCSV.split(",");
         var radiusOptionList = [];
-
         for (var i = 0; i < optionArr.length; i++) {
             var option = optionArr[i];
-
             if (option.startsWith("*")) {
                 option = option.substring(1);
                 radiusOptionList.push(option);
@@ -65,12 +59,10 @@
                 radiusOptionList.push(option);
             }
         }
-
         console.log(JSON.stringify(radiusOptionList));
         if (radiusOptionList.length > 0) {
             component.set('v.radiusOptionList', radiusOptionList);
         }
-
     },
     executeFilter: function(component) {
         console.log('helper executeFilter started...');
@@ -100,9 +92,7 @@
                 console.log('sending PSRefreshMapEvent');
                 $A.get("e.c:PSRefreshDataTableEvent").fire();
                 $A.get("e.c:PSRefreshMapEvent").fire();
-
                 console.log('SENT!');
-
                 try {
                     var tableFields = component.get("v.tableFields");
                 } catch (err) {
@@ -118,11 +108,8 @@
         $A.enqueueAction(action);
     },
     parseMultiSelectList: function(val) {
-
         var optionArr = val.split(";");
         var retStr = null;
-
-
         for (var i = 0; i < optionArr.length; i++) {
             var option = optionArr[i];
             if (option != null && option.length > 0) {
@@ -133,30 +120,21 @@
                 }
             }
         }
-
         return retStr;
-
     },
-    getOptionValue: function(field)
-    {
-       var val = field.value;
-
-       for (var i = 0; i < field.options.length; i++) 
-       {
-         var fldOption = field.options[i];
-         if (fldOption.label == field.value)
-         {
-           val = fldOption.value;
-         }
-       }
-
+    getOptionValue: function(field) {
+        var val = field.value;
+        for (var i = 0; i < field.options.length; i++) {
+            var fldOption = field.options[i];
+            if (fldOption.label == field.value) {
+                val = fldOption.value;
+            }
+        }
         return val;
     },
     createSOQL: function(component) {
         console.log('createSOQL called...');
         var self = this;
-
-
         var sobject = component.get("v.sobject");
         var tableFields = component.get("v.tableFields");
         var mapLatField = component.get("v.mapLatField");
@@ -167,13 +145,11 @@
         var filterFieldComps = component.get("v.filterFieldComps");
         var mapOnly = component.get("v.mapOnly");
         var soql = new String();
-
         ////////////////////////////////////
         // create list of fields to query //
         ////////////////////////////////////
         console.log('setting up fields to query...');
         console.log('tableFields=' + tableFields);
-
         var fieldSet = new Set();
         fieldSet.add("id");
         if (tableFields != null && tableFields.length > 0) {
@@ -186,7 +162,6 @@
         if (mapLngField != null && mapLngField.length > 0) fieldSet.add(mapLngField.trim().toLowerCase());
         if (mapIconField != null && mapIconField.length > 0) fieldSet.add(mapIconField.trim().toLowerCase());
         if (mapMarkerField != null && mapMarkerField.length > 0) fieldSet.add(mapMarkerField.trim().toLowerCase());
-
         /////////////////
         // create SOQL //
         /////////////////
@@ -194,7 +169,6 @@
         soql = "SELECT " + Array.from(fieldSet).join(', ') + "\n";
         soql += "FROM " + sobject + "\n";
         var soqlWhere = '';
-
         //console.log('filterFieldComps=' + JSON.stringify(filterFieldComps));
         if (filterFieldComps.length > 0) {
             ////////////////////////
@@ -206,14 +180,10 @@
                     if (filterFieldComps[i].ftype == 'picklist') {
                         console.log('found picklist');
                         //cls = filterFieldComps[i].name + " = '" + filterFieldComps[i].value + "'";
-
-                        if (filterFieldComps[i].wildcard == true)
-                        {
-                          cls = filterFieldComps[i].name + " LIKE '%" + this.getOptionValue(filterFieldComps[i]) + "%'";
-                        }
-                        else
-                        {
-                          cls = filterFieldComps[i].name + " = '" + this.getOptionValue(filterFieldComps[i]) + "'";
+                        if (filterFieldComps[i].wildcard == true) {
+                            cls = filterFieldComps[i].name + " LIKE '%" + this.getOptionValue(filterFieldComps[i]) + "%'";
+                        } else {
+                            cls = filterFieldComps[i].name + " = '" + this.getOptionValue(filterFieldComps[i]) + "'";
                         }
                     } else if (filterFieldComps[i].ftype == 'string') {
                         console.log('found string');
@@ -241,7 +211,6 @@
                             cls = filterFieldComps[i].name + " = " + filterFieldComps[i].value;
                         }
                     }
-
                     if (cls != "") {
                         if (soqlWhere == "") {
                             soqlWhere += "WHERE " + cls;
@@ -251,10 +220,7 @@
                     }
                 }
             }
-
         }
-
-
         var cls;
         console.log('mapOnly=' + mapOnly);
         if (mapOnly === 'true' && mapLatField != null && mapLatField.length && mapLngField != null && mapLngField.length > 0) {
@@ -265,18 +231,13 @@
                 soqlWhere += "\nAND " + cls;
             }
         }
-
         var radius = component.get('v.radius');
-        if (radius != null && radius.length > 0)
-        {
+        if (radius != null && radius.length > 0) {
             if (component.get('v.radiusCSV') != null && component.get('v.radiusCSV').length > 0) {
                 var gpsField = "Location__c";
-                
-                if (mapLatField != null)
-                {
-                    gpsField = mapLatField.substring(0, mapLatField.length-13) + "__c";
+                if (mapLatField != null) {
+                    gpsField = mapLatField.substring(0, mapLatField.length - 13) + "__c";
                 }
-                
                 cls = "DISTANCE(" + gpsField + ", GEOLOCATION(" + component.get('v.currLat') + "," + component.get('v.currLng') + "), 'mi') < " + component.get('v.radius');
                 if (soqlWhere == "") {
                     soqlWhere += "WHERE " + cls;
@@ -285,7 +246,6 @@
                 }
             }
         }
-
         if (extraWhereClause != null && extraWhereClause.length > 0) {
             if (soqlWhere == "") {
                 soqlWhere += "WHERE " + extraWhereClause;
@@ -293,21 +253,15 @@
                 soqlWhere += "\nAND " + extraWhereClause;
             }
         }
-
-
         if (soqlWhere != "") soql += soqlWhere;
-
         console.log("SOQL=" + soql);
         component.set("v.soql", soql);
-
     },
     setRuntimeEnv: function(component) {
         console.log('href=' + location.href);
-
         var env = "unknown";
         var baseURL = "";
         var pathArray = location.href.split('/');
-
         if (location.href.includes('one.app')) {
             env = "lightning";
             baseURL = pathArray[0] + '//' + pathArray[2] + '/one/one.app?source=aloha#/sObject/';
@@ -315,13 +269,11 @@
             env = "community";
             baseURL = pathArray[0] + '//' + pathArray[2] + '/' + pathArray[3] + '/s/';
         }
-
         var envRT = {
             'env': env,
             'baseURL': baseURL
         };
         console.log(JSON.stringify(envRT));
-
         component.set("v.runtimeEnv", envRT);
     }
 })

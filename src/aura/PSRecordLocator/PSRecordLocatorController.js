@@ -11,13 +11,13 @@
     //////////////////////////////////////
     // get the current lat/lng location //
     //////////////////////////////////////
-    navigator.geolocation.getCurrentPosition(function(location) {
+    navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
       component.set("v.origLat", location.coords.latitude);
       component.set("v.origLng", location.coords.longitude);
 
       var target = component.find("locateDiv");
       $A.util.removeClass(target, 'hide');
-    });
+    }));
 
     //////////////////////////////////////////////
     // load the current record lat/lng location //

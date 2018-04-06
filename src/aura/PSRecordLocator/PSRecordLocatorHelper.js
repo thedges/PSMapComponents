@@ -21,14 +21,14 @@
       var map = component.get('v.map');
       if (resp.status === 'ERROR') {
         console.log('getCurrentPosition');
-        navigator.geolocation.getCurrentPosition(function(location) {
+        navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
           component.set("v.latitude", location.coords.latitude);
           component.set("v.longitude", location.coords.longitude);
           component.set("v.mapZoomLevel", 14);
 
           self.createMap(component);
           self.reverseGeocodeEsri(component, location.coords.latitude, location.coords.longitude);
-        });
+        }));
       } else {
         console.log('data=' + resp.data);
         component.set("v.latitude", resp.data.latitude);
@@ -59,7 +59,15 @@
       if (resp.hasOwnProperty('error')) {
         component.set('v.fullAddress', resp.error.details[0]);
       } else {
-        component.set('v.fullAddress', resp.address.Match_addr);
+        //component.set('v.fullAddress', resp.address.Match_addr);
+        var fullAddr = '';
+        if (resp.address.Address != null) fullAddr += resp.address.Address;
+        if (resp.address.City != null) fullAddr += ', ' + resp.address.City;
+        if (resp.address.Region != null) fullAddr += ', ' + resp.address.Region;
+        if (resp.address.Postal != null) fullAddr += ' ' + resp.address.Postal;
+        
+        component.set('v.fullAddress', fullAddr);
+          
         component.set('v.street', resp.address.Address);
         component.set('v.city', resp.address.City);
         component.set('v.state', resp.address.Region);
@@ -71,8 +79,8 @@
 
     });
 
-    //$A.enqueueAction(action);
-    $A.clientService.runActions([action], this, function() {});
+    $A.enqueueAction(action);
+    //    s$A.clientService.runActions([action], this, function() {});
   },
   createMap: function(component) {
     var self = this;
