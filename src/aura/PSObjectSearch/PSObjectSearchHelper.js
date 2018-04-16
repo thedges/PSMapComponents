@@ -141,6 +141,8 @@
         var mapLngField = component.get("v.mapLngField");
         var mapIconField = component.get("v.mapIconField");
         var mapMarkerField = component.get("v.mapMarkerField");
+        var myRecordFields = component.get("v.myRecordFields");
+        var context = component.get("v.context");
         var extraWhereClause = component.get("v.extraWhereClause");
         var filterFieldComps = component.get("v.filterFieldComps");
         var mapOnly = component.get("v.mapOnly");
@@ -246,6 +248,44 @@
                 }
             }
         }
+        if (myRecordFields != null && myRecordFields.length > 0 && 
+            context.userType != null && context.userType != 'Guest' && 
+            context.userId != null && context.userId.length > 0) 
+        {
+            var fieldArr = myRecordFields.split(',');
+            var tmpStr = "";
+            console.log('fieldArr.length=' + fieldArr.length);
+            
+            if (fieldArr.length == 1)
+            {
+               tmpStr += fieldArr[0].trim().toLowerCase() + "='" + context.userId + "'";
+            }
+            else
+            {
+              for (var i = 0; i < fieldArr.length; i++) 
+              {
+                if (tmpStr == "") 
+                {
+                    tmpStr += "(" + fieldArr[i].trim().toLowerCase() + "='" + context.userId + "'";
+                } 
+                else
+                {
+                    tmpStr += "\nOR " + fieldArr[i].trim().toLowerCase() + "='" + context.userId + "'";
+                }
+              }
+              if (tmpStr.length > 0) tmpStr += ")";
+            }
+
+            if (soqlWhere == "") 
+            {
+                soqlWhere += "WHERE " + tmpStr;
+            } 
+            else 
+            {
+                soqlWhere += "\nAND " + tmpStr;
+            }
+        }
+        
         if (extraWhereClause != null && extraWhereClause.length > 0) {
             if (soqlWhere == "") {
                 soqlWhere += "WHERE " + extraWhereClause;
@@ -275,5 +315,19 @@
         };
         console.log(JSON.stringify(envRT));
         component.set("v.runtimeEnv", envRT);
+    },
+    setRuntimeContext: function(component) {
+        console.log('helper getRuntimeContext started...');
+        var action = component.get("c.getRuntimeContext");
+        console.log(JSON.stringify(action.getParams()));
+        
+        //Set up the callback
+        var self = this;
+        action.setCallback(this, function(a) {
+            console.log('query callback!');
+            console.log(a.getReturnValue());
+            component.set("v.context", JSON.parse(a.getReturnValue()));
+        });
+        $A.enqueueAction(action);
     }
 })

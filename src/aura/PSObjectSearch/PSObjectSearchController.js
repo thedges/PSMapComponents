@@ -15,6 +15,7 @@
         
         helper.initRadiusParams(component);
         helper.setRuntimeEnv(component);
+        helper.setRuntimeContext(component);
         helper.initFilterParams(component);
         helper.initTableParams(component);
     },

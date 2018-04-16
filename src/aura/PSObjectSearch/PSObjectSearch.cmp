@@ -15,6 +15,7 @@
     <aura:attribute name="mapHeight" type="String" default="500" />
     <aura:attribute name="mapOnly" type="String" default="true" />
     <aura:attribute name="extraWhereClause" type="String" default="" />
+    <aura:attribute name="myRecordFields" type="String" default="" />
     <aura:attribute name="radiusCSV" type="String" default="5,10,20,*50,100,200,500"/>
 
     <!-- Runtime Parameters -->
@@ -30,6 +31,7 @@
     <aura:attribute name="radiusOptionList" type="List"/>
     <aura:attribute name="radius" type="String" default="50"/>
     <aura:attribute name="runtimeEnv" type="Object" />
+    <aura:attribute name="context" type="Object" />
     
     <!-- Event Handlers -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
