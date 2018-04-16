@@ -93,5 +93,9 @@
     map.setView([lat, lng], 14);
 
     helper.reverseGeocodeEsri(component, lat, lng);
-  }
+  },
+  destroyCmp : function (component, event, helper) {
+        console.log('destroyCmp invoked...');
+        component.destroy();
+    }
 })

@@ -28,6 +28,7 @@
   <aura:attribute name="map" type="Object" />
   <aura:attribute name="runtimeEnv" type="object" />
   <aura:attribute name="mapHTML" type="String" />
+  <aura:handler event="aura:locationChange" action="{!c.destroyCmp}"/>
 
   <div >
     <div aura:id="mapContainer" id="mapContainer">
