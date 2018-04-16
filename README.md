@@ -40,6 +40,7 @@ The following is example of the component showing cases.
   - <b>SObject Field For Marker HTML</b> - the field API name for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX)
   - <b>Height of map in pixels</b> - the height of the map
   - <b>Only show records that have geolocation</b> - true/false value to determine if only records that have lat/lng values are shown or if all values matching the filter criteria are shown
+  - <b>My Record Fields</b> - comma separated list of field API names that contain the current user id you want to filter on; used to filter for "My Records"; example string values would be "OwnerId" or "OwnerId,ContactId"
   - <b>Additional Where Clause</b> - static where clause statement to be added to query to filter records
 
 ## PSRecordLocator
