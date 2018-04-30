@@ -33,10 +33,10 @@
   <div >
     <div aura:id="mapContainer" id="mapContainer">
       <!-- the map component -->
-      <div aura:id="map" id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+      <div aura:id="map" id="map" style="{!'height:' + v.mapHeight + 'px; border-radius: 5px'}"></div>
 
       <!-- the street address overlay -->
-      <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px;"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
+      <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
       
       <!-- the locate me icon -->
       <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="/resource/mapLocateMe" height="42" width="42" onclick="{!c.centerOnLocation}" /></div>

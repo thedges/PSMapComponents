@@ -3,11 +3,13 @@
     var self = this;
     console.log('loadRecordLocation invoked...');
 
+    self.createMap(component);
+      
     var paramMap = {};
 
     paramMap['recordId'] = component.get('v.recordId');
     paramMap['mapLatField'] = component.get('v.mapLatField');
-    paramMap['mapLngField'] = component.get('v.mapLngField');
+    paramMap['mapLngField'] = component.get('v.mapLngField');     
 
     var action = component.get("c.getCurrLocation");
     action.setParams({
@@ -21,21 +23,46 @@
       var map = component.get('v.map');
       if (resp.status === 'ERROR') {
         console.log('getCurrentPosition');
+        var options = {
+           enableHighAccuracy: false,
+           timeout: 5000,
+           maximumAge: Infinity
+        };
         navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
           component.set("v.latitude", location.coords.latitude);
           component.set("v.longitude", location.coords.longitude);
           component.set("v.mapZoomLevel", 14);
 
-          self.createMap(component);
+          //self.createMap(component);
+          try
+          {
+          map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
           self.reverseGeocodeEsri(component, location.coords.latitude, location.coords.longitude);
-        }));
+          }
+          catch (err)
+          {
+              // do nothing
+          }
+        }), 
+        function(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+            //self.createMap(component);
+        });
       } else {
         console.log('data=' + resp.data);
         component.set("v.latitude", resp.data.latitude);
         component.set("v.longitude", resp.data.longitude);
         component.set("v.mapZoomLevel", 14);
 
-        self.createMap(component);
+        //self.createMap(component);
+        try
+        {
+          map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
+        }
+        catch (err)
+        {
+            // do nothing
+        }
       }
 
     });
