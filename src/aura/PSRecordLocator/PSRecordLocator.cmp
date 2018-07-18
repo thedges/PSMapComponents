@@ -1,5 +1,5 @@
 <aura:component access="global" controller="PSRecordLocatorController" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable,forceCommunity:availableForAllPageTypes">
-  <ltng:require scripts="{!$Resource.leaflet_1_0_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_0_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
+  <ltng:require scripts="{!$Resource.leaflet_1_3_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_3_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
 
   <aura:attribute name="mapCenterLat" type="String" default="30.267811" required="true" access="global" />
   <aura:attribute name="mapCenterLng" type="String" default="-97.744328" required="true" access="global" />
@@ -33,7 +33,7 @@
   <div >
     <div aura:id="mapContainer" id="mapContainer">
       <!-- the map component -->
-      <div aura:id="map" id="map" style="{!'height:' + v.mapHeight + 'px; border-radius: 5px'}"></div>
+      <div id="{!globalId + '_map'}" style="{!'height:' + v.mapHeight + 'px; border-radius: 5px'}"></div>
 
       <!-- the street address overlay -->
       <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>

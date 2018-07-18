@@ -39,6 +39,8 @@
   },
   initTableParams: function(component) {
     console.log('initTableParams begin...');
+    var globalId = component.getGlobalId();
+      
     var self = this; // safe reference
     var tableFields = component.get("v.tableFields");
     var sobject = component.get("v.sobject");
@@ -67,7 +69,7 @@
 
       try {
         $(document).ready(function() {
-          $('#recordTable').DataTable({
+            $(document.getElementById(globalId + '_recordTable')).DataTable({
             "searching": false,
             "pageLength": 15,
             "lengthChange": false,

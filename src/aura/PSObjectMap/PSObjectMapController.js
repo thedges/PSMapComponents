@@ -1,6 +1,7 @@
 ({
     jsLoaded: function(component, event, helper) {
         console.log("jsLoaded called");
+         var globalId = component.getGlobalId();
 
         var markersLayer = new L.LayerGroup();
         var markersLayerList = [];
@@ -9,7 +10,7 @@
         var map = component.get("v.map");
 
         if (map !== undefined || map !== null) {
-            map = L.map('map', { zoomControl: true, boxZoom: true, trackResize: true, doubleClickZoom: true })
+            map = L.map(document.getElementById(globalId + '_map'), { zoomControl: true, boxZoom: true, trackResize: true, doubleClickZoom: true })
                 .setView([parseFloat(component.get("v.mapCenterLat")), parseFloat(component.get("v.mapCenterLng"))], component.get("v.mapZoomLevel"));
         }
 
@@ -47,7 +48,7 @@
                 iconSize: [50, 50] // size of the icon
             });
             console.log('setting crosshair center=' + map.getCenter());
-            crosshair = new L.marker(map.getCenter(), {
+            var crosshair = new L.marker(map.getCenter(), {
                 icon: crosshairIcon,
                 clickable: false
             });

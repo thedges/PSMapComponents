@@ -38,7 +38,7 @@ CASE( Type,
         <fullName>MarkerHTML__c</fullName>
         <externalId>false</externalId>
         <formula>&apos;&lt;h3&gt;&lt;a href=\&quot;@ID@\&quot;&gt;[&apos; +  CaseNumber  + &apos;] &apos; + Subject + &apos;&lt;/a&gt;&lt;/h3&gt;&apos; +
-                            &apos;&lt;table&gt;&lt;tr&gt;&lt;td valign=&quot;top&quot; style=&quot;padding-right: 10px;&quot;&gt;&apos; +
+                            &apos;&lt;table&gt;&lt;tr&gt;&lt;td valign=&quot;top&quot; style=&quot;padding-right: 10px&quot;&gt;&apos; +
                             &apos;&lt;/td&gt;&lt;td&gt;&apos; +
                             &apos;&lt;br/&gt;&lt;b&gt;Type:&lt;/b&gt; &apos; + TEXT(Type) + 
                             &apos;&lt;br/&gt;&lt;b&gt;Status:&lt;/b&gt; &apos; + TEXT(Status) + 

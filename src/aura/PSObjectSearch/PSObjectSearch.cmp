@@ -1,4 +1,4 @@
-<aura:component controller="PSObjectSearchController" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
+<aura:component controller="PSObjectSearchController" implements="force:appHostable,force:hasRecordId,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes">
     <!-- Configuration Parameters -->
     <aura:attribute name="sobject" type="String" default="Case" />
     <aura:attribute name="title" type="String" default="Case Search Filter" />

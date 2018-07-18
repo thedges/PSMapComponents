@@ -30,6 +30,7 @@
         <members>JQueryDataTable_1_10_12</members>
         <members>jquery_2_2_4</members>
         <members>leaflet_1_0_2</members>
+        <members>leaflet_1_3_2</members>
         <members>lodash</members>
         <members>mapCrosshair</members>
         <members>mapCrosshair2</members>

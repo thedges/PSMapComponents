@@ -96,6 +96,6 @@
   },
   destroyCmp : function (component, event, helper) {
         console.log('destroyCmp invoked...');
-        component.destroy();
+        //component.destroy();
     }
 })

@@ -1,5 +1,5 @@
 <aura:component access="global"  >
-  <ltng:require scripts="{!$Resource.leaflet_1_0_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_0_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
+  <ltng:require scripts="{!$Resource.leaflet_1_3_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_3_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
 
   <aura:attribute name="recList" type="List" access="global" />
   <aura:attribute name="mapCenterLat" type="String" default="30.267811" required="true" access="global" />
@@ -30,7 +30,7 @@
 
   <div class="slds-p-top--medium">
     <div aura:id="mapContainer" id="mapContainer">
-      <div id="map" style="{!'height:' + v.mapHeight + 'px;'}"></div>
+      <div id="{!globalId + '_map'}" style="{!'height:' + v.mapHeight + 'px;'}"></div>
 
       <!-- the locate me icon -->
       <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="{!$Resource.mapLocateMe}" height="42" width="42" onclick="{!c.centerOnLocation}" /></div>

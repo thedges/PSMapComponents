@@ -111,12 +111,15 @@
   },
   createMap: function(component) {
     var self = this;
+    var globalId = component.getGlobalId();
 
     console.log("create map...");
+    console.log("globalId=" + globalId);
+      
     ////////////////
     // create map //
     ////////////////
-    var map = L.map(component.find('map').getElement(), {
+    var map = L.map(document.getElementById(globalId + '_map'), {
       zoomControl: true,
       boxZoom: true,
       trackResize: true,
@@ -146,7 +149,7 @@
       iconSize: [200, 200] // size of the icon
     });
     console.log('setting crosshair center=' + map.getCenter());
-    crosshair = new L.marker(map.getCenter(), {
+    var crosshair = new L.marker(map.getCenter(), {
       icon: crosshairIcon,
       clickable: false
     });

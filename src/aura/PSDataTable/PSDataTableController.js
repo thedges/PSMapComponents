@@ -5,6 +5,7 @@
         var objtype = component.get("v.sobject");
         var rtEnv = component.get("v.runtimeEnv");
         var recs = component.get("v.recList");
+        var globalId = component.getGlobalId();
 
         //////////////////////////////
         // prep data before display //
@@ -41,7 +42,7 @@
         }
 
         try {
-            $('#recordTable').DataTable().clear().rows.add(jQuery.parseJSON(JSON.stringify(recs))).draw();
+            $(document.getElementById(globalId + '_recordTable')).DataTable().clear().rows.add(jQuery.parseJSON(JSON.stringify(recs))).draw();
         } catch (err) {
             console.log(err.message);
         }
@@ -52,6 +53,7 @@
     },
     jsLoaded: function(component, event, helper) {
         console.log("PSDataTable::jsLoaded called");
+         var globalId = component.getGlobalId();
 
 
 /*
@@ -79,7 +81,7 @@
 
         try {     
           $(document).ready(function() {
-            $('#recordTable').DataTable({
+            $(document.getElementById(globalId + '_recordTable')).DataTable({
                 "searching": false,
                 "pageLength": 15,
                 "lengthChange": false,
