@@ -43,6 +43,25 @@ The following is example of the component showing cases.
   - <b>My Record Fields</b> - comma separated list of field API names that contain the current user id you want to filter on; used to filter for "My Records"; example string values would be "OwnerId" or "OwnerId,ContactId"
   - <b>Additional Where Clause</b> - static where clause statement to be added to query to filter records
 
+### Demo Tip
+
+Reminder that the map pin display is controlled by a field on the object you are displaying records for. By default when you install this component, it installs a formula field on the Case object called "MarkerHTML__c". This field is configured to return a string that includes HTML markup. Using standard formula field functionality, you can include record field values in this formula field to include in the HTML displayed when you click on a map pin.
+
+So one good example to extend this field is providing driving directions to the user to the choosen pin location. This is easily accomplished by added an HTML anchor tag (<a>) to the formula field string and build an HTML link to load Google directions in another window. 
+
+'''  
+  '<h3><a href=\"@ID@\">[' +  CaseNumber  + '] ' + Subject + '</a></h3>' +
+                            '<table><tr><td valign="top" style="padding-right: 10px">' +
+                            '</td><td>' +
+                            '<br/><b>Type:</b> ' + TEXT(Type) + 
+                            '<br/><b>Status:</b> ' + TEXT(Status) + 
+                            '<br/><b>Priority:</b> ' + TEXT(Priority) +
+                            '</td></tr></table>' +
+'<br/><a href="https://www.google.com/maps/dir/?api=1&destination=' +  TEXT(Location__Latitude__s)  + ',' +  TEXT(Location__Longitude__s)  + '" target="_blank" style="text-decoration:none;color:#47b055;">Driving Directions</a>'
+'''
+
+
+
 ## PSRecordLocator
 Use this component to drop on record to show current location. You can move map to new location and component will do a reverse address lookup based on location of crosshair. Click on address at bottom of window to set the record lat/lng and address fields. The following is example of the map component on a record.
 
