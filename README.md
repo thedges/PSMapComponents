@@ -63,7 +63,7 @@ The main section of code to refer to is last part that starts with `<a href="htt
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/map-driving-direction.png "Sample Image")
 
-One you click on the Driving Direction link, it launches a new window with driving directions to the pin location:
+Once you click on the Driving Direction link, it launches a new window with driving directions to the pin location:
 
 ![alt text](https://github.com/thedges/PSMapComponents/blob/master/google-driving-direction.png "Sample Image")
 
