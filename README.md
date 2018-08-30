@@ -49,7 +49,7 @@ Reminder that the map pin display is controlled by a field on the object you are
 
 So one good example to extend this field is providing driving directions to the user to the choosen pin location. This is easily accomplished by added an HTML anchor tag (<a>) to the formula field string and build an HTML link to load Google directions in another window. 
 
-'''  
+```
   '<h3><a href=\"@ID@\">[' +  CaseNumber  + '] ' + Subject + '</a></h3>' +
                             '<table><tr><td valign="top" style="padding-right: 10px">' +
                             '</td><td>' +
@@ -58,7 +58,7 @@ So one good example to extend this field is providing driving directions to the 
                             '<br/><b>Priority:</b> ' + TEXT(Priority) +
                             '</td></tr></table>' +
 '<br/><a href="https://www.google.com/maps/dir/?api=1&destination=' +  TEXT(Location__Latitude__s)  + ',' +  TEXT(Location__Longitude__s)  + '" target="_blank" style="text-decoration:none;color:#47b055;">Driving Directions</a>'
-'''
+```
 
 
 
