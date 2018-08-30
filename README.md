@@ -59,8 +59,13 @@ So one good example to extend this field is providing driving directions to the 
                             '</td></tr></table>' +
 '<br/><a href="https://www.google.com/maps/dir/?api=1&destination=' +  TEXT(Location__Latitude__s)  + ',' +  TEXT(Location__Longitude__s)  + '" target="_blank" style="text-decoration:none;color:#47b055;">Driving Directions</a>'
 ```
+The main section of code to refer to is last part that starts with `<a href="https://www.google.com/maps/dir/?api=1&destination...` which build a Google Directions URL that includes directions to the latitude/longitude of the pin you select. When the pin is clicked on, it will show a window like the following example that has the "Driving Directions" link in green.
 
+![alt text](https://github.com/thedges/PSMapComponents/blob/master/google-driving-direction.png "Sample Image")
 
+One you click on the Driving Direction link, it launches a new window with driving directions to the pin location:
+
+![alt text](https://github.com/thedges/PSMapComponents/blob/master/map-driving-direction.png "Sample Image")
 
 ## PSRecordLocator
 Use this component to drop on record to show current location. You can move map to new location and component will do a reverse address lookup based on location of crosshair. Click on address at bottom of window to set the record lat/lng and address fields. The following is example of the map component on a record.
