@@ -102,6 +102,7 @@
                     }
                     cs[mapMarkerField] = cs[mapMarkerField].replace("@ID@", url);
                 }
+                
                 if (cs[mapLatField] !== undefined && cs[mapLngField] !== undefined) {
                     console.log(cs[mapLatField] + ' ' + cs[mapLngField]);
                     var latLng = [cs[mapLatField], cs[mapLngField]];
@@ -117,6 +118,7 @@
                     marker.bindPopup(popup);
                     markersLayer.addLayer(marker);
                 }
+                
             }
             var map = component.get("v.map");
 

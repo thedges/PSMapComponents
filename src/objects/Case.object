@@ -43,7 +43,8 @@ CASE( Type,
                             &apos;&lt;br/&gt;&lt;b&gt;Type:&lt;/b&gt; &apos; + TEXT(Type) + 
                             &apos;&lt;br/&gt;&lt;b&gt;Status:&lt;/b&gt; &apos; + TEXT(Status) + 
                             &apos;&lt;br/&gt;&lt;b&gt;Priority:&lt;/b&gt; &apos; + TEXT(Priority) +
-                            &apos;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos;</formula>
+                            &apos;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos; +
+&apos;&lt;br/&gt;&lt;a href=&quot;https://www.google.com/maps/dir/?api=1&amp;destination=&apos; +  TEXT(Location__Latitude__s)  + &apos;,&apos; +  TEXT(Location__Longitude__s)  + &apos;&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;color:#47b055;&quot;&gt;Driving Directions&lt;/a&gt;&apos;</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>MarkerHTML</label>
         <required>false</required>
