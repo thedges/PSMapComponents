@@ -72,7 +72,8 @@
     });
     // Enqueue the action
     console.log('reverseGeocodeEsri enqueueAction...');
-    //$A.enqueueAction(action);
-    $A.clientService.runActions([action], this, function() {});
+    
+    $A.enqueueAction(action);
+    //$A.clientService.runActions([action], this, function() {});
   }
 })

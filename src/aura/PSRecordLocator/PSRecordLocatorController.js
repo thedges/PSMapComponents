@@ -70,6 +70,23 @@
       if (resp.status === 'SUCCESS') {
         component.set('v.fullAddress', 'Location saved!');
         var target = component.find("addressDiv");
+
+        var markersLayerList = component.get("v.markersLayerList");
+        var markersLayer = markersLayerList[0];
+        markersLayer.clearLayers();
+
+        var crosshairIcon = L.icon({
+          //iconUrl: '/resource/mapCrosshair',
+          iconUrl: $A.get('$Resource.mapCrosshair4'),
+          iconSize: [200, 200] // size of the icon
+        });
+
+        var crosshair = new L.marker([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], {
+          icon: crosshairIcon,
+          clickable: false
+        });
+        markersLayer.addLayer(crosshair);
+
         $A.util.addClass(target, 'hide');
         $A.get('e.force:refreshView').fire();
       } else {

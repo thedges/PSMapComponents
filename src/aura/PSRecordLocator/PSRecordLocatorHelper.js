@@ -58,6 +58,23 @@
         try
         {
           map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
+
+          var markersLayerList = component.get("v.markersLayerList");
+          var markersLayer = markersLayerList[0];
+
+          var crosshairIcon = L.icon({
+            //iconUrl: '/resource/mapCrosshair',
+            iconUrl: $A.get('$Resource.mapCrosshair4'),
+            iconSize: [200, 200] // size of the icon
+          });
+          console.log('setting crosshair center=' + map.getCenter());
+          var crosshair = new L.marker([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], {
+            icon: crosshairIcon,
+            clickable: false
+          });
+console.log('setting record location');
+          markersLayer.addLayer(crosshair);
+
         }
         catch (err)
         {
@@ -73,6 +90,8 @@
   reverseGeocodeEsri: function(component, lat, lng) {
     console.log('reverseGeocodeEsri invoked...');
     var action = component.get("c.reverseGeocodeEsri");
+    if (action)
+    {
     action.setParams({
       "lat": lat,
       "lng": lng
@@ -108,6 +127,7 @@
 
     $A.enqueueAction(action);
     //    s$A.clientService.runActions([action], this, function() {});
+  }
   },
   createMap: function(component) {
     var self = this;
@@ -115,7 +135,11 @@
 
     console.log("create map...");
     console.log("globalId=" + globalId);
-      
+     
+    var markersLayer = new L.LayerGroup();
+    var markersLayerList = [];
+    markersLayerList.push(markersLayer);
+
     ////////////////
     // create map //
     ////////////////
@@ -131,14 +155,13 @@
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: ''
       }).addTo(map);
+      markersLayer.addTo(map);
 
     ///////////////////////////////////////////////////////////////////////////////
     // center map on record location or if doesn't exist, users current position //
     ///////////////////////////////////////////////////////////////////////////////
     map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
 
-    component.set("v.map", map);
-    console.log("map created...");
 
     ///////////////////////////////////////////
     // create cross to keep at center of map //
@@ -171,6 +194,10 @@
       console.log('calling reverseGeocodeEsri');
       self.reverseGeocodeEsri(component, coords.lat, coords.lng);
     });
+
+    component.set("v.map", map);
+    component.set("v.markersLayerList", markersLayerList);
+    console.log("map created...");
 
   }
 })

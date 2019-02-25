@@ -35,6 +35,7 @@
         <members>mapCrosshair</members>
         <members>mapCrosshair2</members>
         <members>mapCrosshair3</members>
+        <members>mapCrosshair4</members>
         <members>mapLocateMe</members>
         <name>StaticResource</name>
     </types>
