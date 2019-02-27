@@ -13,6 +13,7 @@
 
   <aura:attribute name="mapZoomLevel" type="Integer" default="11" required="true" access="global" />
   <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
+  <aura:attribute name="autoCenter" type="Boolean" default="true" />
 
   <aura:attribute name="latitude" type="String" />
   <aura:attribute name="longitude" type="String" />

@@ -9,5 +9,6 @@
     <design:attribute name="mapCenterLat" label="Map Center Latitude" Description="Latitude for center of map"  />
     <design:attribute name="mapCenterLng" label="Map Center Longitude" Description="Longitude for center of map"  />
     <design:attribute name="mapZoomLevel" label="Map Zoom Level" Description="Map zoom level"  />
+    <design:attribute name="autoCenter" label="Re-center on current location" Description="Re-center on current location if record location is not set"  />
     <design:attribute name="mapHeight" label="Height of map in pixels" Description="Height of map in pixels"  />
 </design:component>

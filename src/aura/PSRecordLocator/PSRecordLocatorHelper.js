@@ -28,6 +28,9 @@
            timeout: 5000,
            maximumAge: Infinity
         };
+
+        if (component.get("v.autoCenter"))
+        {
         navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
           component.set("v.latitude", location.coords.latitude);
           component.set("v.longitude", location.coords.longitude);
@@ -48,6 +51,7 @@
             console.warn(`ERROR(${err.code}): ${err.message}`);
             //self.createMap(component);
         });
+        } 
       } else {
         console.log('data=' + resp.data);
         component.set("v.latitude", resp.data.latitude);
@@ -72,7 +76,6 @@
             icon: crosshairIcon,
             clickable: false
           });
-console.log('setting record location');
           markersLayer.addLayer(crosshair);
 
         }
