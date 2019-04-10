@@ -37,7 +37,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:registerEvent name="refreshMap" type="c:PSRefreshMapEvent" />
     <aura:registerEvent name="refreshDataTable" type="c:PSRefreshDataTableEvent" />
-    <div class="container">
+    <div class="slds-card">
         <aura:if isTrue="{!v.errorMsg.length > 0}">
             <ui:message title="Error" severity="error" closable="true">
                 {!v.errorMsg}
@@ -45,7 +45,7 @@
         </aura:if>
         <div class="slds-grid slds-wrap slds-grid--pull-padded">
             <div class="slds-p-horizontal--small slds-size--1-of-1">
-                <fieldset class="slds-box slds-theme--default">
+                <fieldset class="slds-p-around_x-small">
                     <aura:renderIf isTrue="{!v.title.length > 0}">
                         <legend class="slds-text-heading--medium "><span style="font-weight:bold">{!v.title}</span></legend>
                     </aura:renderIf>
