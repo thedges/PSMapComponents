@@ -1,4 +1,6 @@
 # PSMapComponents
+THIS SOFTWARE IS COVERED BY [THIS DISCLAIMER](https://raw.githubusercontent.com/thedges/Disclaimer/master/disclaimer.txt).
+
 This package includes variety of map/GIS related demo components:
 * <b>PSObjectSearch</b> - component to search records on object and display in map and table
 * <b>PSRelatedListMap</b> - component to plot on map location of child records based on parent record
