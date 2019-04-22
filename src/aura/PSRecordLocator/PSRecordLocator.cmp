@@ -11,7 +11,7 @@
   <aura:attribute name="addrStateField" type="String" default="State__c" required="true" access="global" />
   <aura:attribute name="addrPostalField" type="String" default="Postal__c" required="true" access="global" />
 
-  <aura:attribute name="mapZoomLevel" type="Integer" default="11" required="true" access="global" />
+  <aura:attribute name="mapZoomLevel" type="Integer" default="14" required="true" access="global" />
   <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
   <aura:attribute name="autoCenter" type="Boolean" default="true" />
 
@@ -25,6 +25,8 @@
 
   <aura:attribute name="origLat" type="String" />
   <aura:attribute name="origLng" type="String" />
+    
+  <aura:attribute name="initFinished" type="Boolean" default="false"/>
 
   <aura:attribute name="map" type="Object" />
   <aura:attribute name="runtimeEnv" type="object" />
@@ -38,7 +40,7 @@
       <div id="{!globalId + '_map'}" style="{!'height:' + v.mapHeight + 'px; border-radius: 5px'}"></div>
 
       <!-- the street address overlay -->
-      <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
+      <div aura:id="addressDiv" class="hide" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
       
       <!-- the locate me icon -->
       <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="/resource/mapLocateMe" height="42" width="42" onclick="{!c.centerOnLocation}" /></div>

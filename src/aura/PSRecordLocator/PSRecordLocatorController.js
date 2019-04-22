@@ -14,9 +14,9 @@
     navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
       component.set("v.origLat", location.coords.latitude);
       component.set("v.origLng", location.coords.longitude);
-
-      var target = component.find("locateDiv");
-      $A.util.removeClass(target, 'hide');
+        
+      //var target = component.find("locateDiv");
+      //$A.util.removeClass(target, 'hide');
     }));
 
     //////////////////////////////////////////////
@@ -107,9 +107,9 @@
     var map = component.get("v.map");
     var lat = component.get("v.origLat");
     var lng = component.get("v.origLng");
-    map.setView([lat, lng], 14);
+    map.setView([lat, lng], component.get('v.mapZoomLevel'));
 
-    helper.reverseGeocodeEsri(component, lat, lng);
+    helper.reverseGeocodeEsri(component, lat, lng, false);
   },
   destroyCmp : function (component, event, helper) {
         console.log('destroyCmp invoked...');

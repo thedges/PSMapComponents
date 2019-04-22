@@ -34,13 +34,13 @@
         navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
           component.set("v.latitude", location.coords.latitude);
           component.set("v.longitude", location.coords.longitude);
-          component.set("v.mapZoomLevel", 14);
+          component.set("v.mapZoomLevel", component.get('v.mapZoomLevel'));
 
           //self.createMap(component);
           try
           {
           map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
-          self.reverseGeocodeEsri(component, location.coords.latitude, location.coords.longitude);
+          self.reverseGeocodeEsri(component, location.coords.latitude, location.coords.longitude, true);
           }
           catch (err)
           {
@@ -52,15 +52,19 @@
             //self.createMap(component);
         });
         } 
+          else
+          {
+              component.set("v.initFinished", true);  
+          }
       } else {
         console.log('data=' + resp.data);
         component.set("v.latitude", resp.data.latitude);
         component.set("v.longitude", resp.data.longitude);
-        component.set("v.mapZoomLevel", 14);
 
         //self.createMap(component);
         try
         {
+            console.log('record zoom = ' + component.get("v.mapZoomLevel"));
           map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
 
           var markersLayerList = component.get("v.markersLayerList");
@@ -77,12 +81,15 @@
             clickable: false
           });
           markersLayer.addLayer(crosshair);
+            
+
 
         }
         catch (err)
         {
             // do nothing
         }
+        
       }
 
     });
@@ -90,7 +97,7 @@
     // Enqueue the action
     $A.enqueueAction(action);
   },
-  reverseGeocodeEsri: function(component, lat, lng) {
+  reverseGeocodeEsri: function(component, lat, lng, showAddress) {
     console.log('reverseGeocodeEsri invoked...');
     var action = component.get("c.reverseGeocodeEsri");
     if (action)
@@ -122,8 +129,14 @@
         component.set('v.state', resp.address.Region);
         component.set('v.postal', resp.address.Postal);
 
-        var target = component.find("addressDiv");
-        $A.util.removeClass(target, 'hide');
+        if (showAddress)
+        {
+          console.log('show address bar');
+          var target = component.find("addressDiv");
+          $A.util.removeClass(target, 'hide');
+        }
+          
+        component.set("v.initFinished", true);  
       }
 
     });
@@ -163,6 +176,7 @@
     ///////////////////////////////////////////////////////////////////////////////
     // center map on record location or if doesn't exist, users current position //
     ///////////////////////////////////////////////////////////////////////////////
+    console.log('create map zoom = ' + component.get("v.mapZoomLevel"));
     map.setView([parseFloat(component.get("v.latitude")), parseFloat(component.get("v.longitude"))], component.get("v.mapZoomLevel"));
 
 
@@ -195,7 +209,7 @@
       component.set('v.longitude', coords.lng);
 
       console.log('calling reverseGeocodeEsri');
-      self.reverseGeocodeEsri(component, coords.lat, coords.lng);
+      //self.reverseGeocodeEsri(component, coords.lat, coords.lng, component.get('v.initFinished'));
     });
 
     component.set("v.map", map);
