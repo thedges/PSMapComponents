@@ -23,15 +23,23 @@
   <aura:attribute name="state" type="String" />
   <aura:attribute name="postal" type="String" />
 
+  <aura:attribute name="recLat" type="String" />
+  <aura:attribute name="recLng" type="String" />
   <aura:attribute name="origLat" type="String" />
   <aura:attribute name="origLng" type="String" />
-    
-  <aura:attribute name="initFinished" type="Boolean" default="false"/>
 
   <aura:attribute name="map" type="Object" />
   <aura:attribute name="runtimeEnv" type="object" />
   <aura:attribute name="mapHTML" type="String" />
+
   <aura:attribute name="markersLayerList" type="List" />
+
+  <aura:attribute name="recordMarker" type="Object" />
+  <aura:attribute name="recordLayer" type="Object" />
+  <aura:attribute name="crosshairMarker" type="Object" />
+  <aura:attribute name="crosshairLayer" type="Object" />
+
+  <aura:attribute name="mode" type="String" default="INIT" />   
   <aura:handler event="aura:locationChange" action="{!c.destroyCmp}"/>
 
   <div >
@@ -40,10 +48,18 @@
       <div id="{!globalId + '_map'}" style="{!'height:' + v.mapHeight + 'px; border-radius: 5px'}"></div>
 
       <!-- the street address overlay -->
-      <div aura:id="addressDiv" class="hide" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
-      
-      <!-- the locate me icon -->
-      <div aura:id="locateDiv" id="locateDiv" class="hide"><img src="/resource/mapLocateMe" height="42" width="42" onclick="{!c.centerOnLocation}" /></div>
+      <aura:if isTrue="{!v.mode == 'TRACK'}">
+        <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.fullAddress}</a></div>
+      </aura:if>
+
+      <div aura:id="controlDiv" id="controlDiv">
+          <aura:if isTrue="{!v.origLat != null &amp;&amp; v.origLng != null}">
+          <div ><img src="/resource/PSMapComponents/gps-arrow.png" height="25" width="25" onclick="{!c.centerOnLocation}" /></div>
+        </aura:if>
+        <aura:if isTrue="{!v.recLat != null &amp;&amp; v.recLng != null}">
+          <div class="slds-p-top_xxx-small"><img src="/resource/PSMapComponents/gps-crosshair-2.png" height="25" width="25" onclick="{!c.centerOnRecord}" /></div>
+        </aura:if>
+        </div>
     </div>
   </div>
       
