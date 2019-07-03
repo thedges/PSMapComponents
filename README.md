@@ -27,9 +27,11 @@ The following is example of the component showing cases.
 * If you don't want the map section to show, set the <b>SObject Field for Latitude</b> and <b>SObject Field for Longitude</b> values to blank.
 * If you don't want the table section to show, set the <b>SObject Fields to Show in Table</b> value to blank.
 * The component configuration fields are:
+
 | Parameter | Description |
 |-----------|-------------|
 | <b>SObject To Map</b> | the API name of the sobject to filter data on |
+
 | <b>Title of Map Section</b> | the title to use at the top of the component |
 | <b>Filter Button Label</b> | the label for the search button |
 | <b>SObject Fields to Filter On</b> | comma separated list of field API names to provide search/filter capabilites; currently only supports text and picklist fields |
