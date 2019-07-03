@@ -40,8 +40,7 @@ The following is example of the component showing cases.
 | <b>SObject Field for Longitude</b> | the field API name for the longitude value |
 | <b>Map Center Latitude</b> | the default latitude value for centering the map |
 | <b>Map Center Latitude</b> | the default longitude value for centering the map |
-| <b>Map Zoom Level</b> - the default map zoom level; default: 11  |
-
+| <b>Map Zoom Level</b> | the default map zoom level; default: 11  |
 | <b>SObject Field for Map Icon</b> | the field API name for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example. An example formula for this field is like followng:
  ` `<br/>
  `
