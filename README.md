@@ -62,10 +62,9 @@ CASE( Type,
 '<br/><b>Type:</b> ' + TEXT(Type) + 
 '<br/><b>Status:</b> ' + TEXT(Status) + 
 '<br/><b>Priority:</b> ' + TEXT(Priority) +
-'</td></tr></table>' +
-'<br/><a href="https://www.google.com/maps/dir/?api=1&destination=' + TEXT(Location__Latitude__s) + ',' + TEXT(Location__Longitude__s) + '" target="_blank" style="text-decoration:none;color:#47b055;">Driving Directions</a>'
+'</td></tr></table>'
   `
-  This shows a formula field that returns a text string with HTML markup. The HTML has <h3> header section with details for a case and then generates a table of <b>key: value</b> parameters
+  This shows a formula field that returns a text string with HTML markup. The HTML has header section with details for a case and then generates a table of <b>key: value</b> parameters
   - <b>Height of map in pixels</b> - the height of the map
   - <b>Only show records that have geolocation</b> - true/false value to determine if only records that have lat/lng values are shown or if all values matching the filter criteria are shown
   - <b>My Record Fields</b> - comma separated list of field API names that contain the current user id you want to filter on; used to filter for "My Records"; example string values would be "OwnerId" or "OwnerId,ContactId"
