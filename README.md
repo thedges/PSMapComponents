@@ -104,8 +104,7 @@ Use this component to drop on record to show current location. You can move map 
 | <b>SObject Field For Street</b> | SObject field that stores the street |
 | <b>SObject Field For City</b> | SObject field that stores the city |
 | <b>SObject Field For State</b> | SObject field that stores the state |
-
-| <b>SObject Field For Postal/Zipcode</b> | SObject field that stores postal/zip code |
+| <b>SObject Field For Postal/Zipcode</b> | SObject field that stores postal code |
 | <b>Map Center Latitude</b> | Default latitude for center of map |
 | <b>Map Center Longitude</b> | Default longitude for center of map |
 | <b>Map Zoom Level</b> | Default map zoom level |
