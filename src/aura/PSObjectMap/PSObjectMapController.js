@@ -90,6 +90,8 @@
             markersLayer.clearLayers();
             var locationCoor = [];
             console.log('length=' + recs.length);
+            console.log('rtEnv.baseURL=' + rtEnv.baseURL);
+            
             for (var i = 0; i < recs.length; i++) {
                 var cs = recs[i];
                 console.log('cs=' + JSON.stringify(cs));

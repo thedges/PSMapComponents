@@ -29,6 +29,8 @@
             }
             else if (objRec.hasOwnProperty('Name'))
             {
+              if (!objRec.Name.startsWith('<'))
+              {
                if (rtEnv.env === 'community')
                {
                  objRec.Name = '<a href="' + rtEnv.baseURL + 'detail/' + objRec.Id + '">' + objRec.Name + '</a>';
@@ -37,6 +39,7 @@
                {
                  objRec.Name = '<a href="' + rtEnv.baseURL + objRec.Id + '/view">' + objRec.Name + '</a>';
                }
+              }
             }
             
         }

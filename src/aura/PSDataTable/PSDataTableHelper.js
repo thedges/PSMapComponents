@@ -50,7 +50,7 @@
       "objtype": sobject,
       "tableFields": tableFields
     });
-    action.setCallback(self, function(a) {
+    action.setCallback(self,  $A.getCallback(function(a) {
       console.log('initTableParams complete!');
       console.log('response=' + a.getReturnValue());
       //console.log('retList=' + a.getReturnValue());
@@ -81,7 +81,7 @@
       } catch (err) {
         console.log(err.message);
       }
-    });
+    }));
     // Enqueue the action
     $A.enqueueAction(action);
   }
