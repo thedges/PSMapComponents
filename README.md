@@ -27,6 +27,19 @@ The following is example of the component showing cases.
 * If you don't want the map section to show, set the <b>SObject Field for Latitude</b> and <b>SObject Field for Longitude</b> values to blank.
 * If you don't want the table section to show, set the <b>SObject Fields to Show in Table</b> value to blank.
 * The component configuration fields are:
+| Parameter | Description |
+|-----------|-------------|
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
   - <b>SObject To Map</b> - the API name of the sobject to filter data on
   - <b>Title of Map Section</b> - the title to use at the top of the component
   - <b>Filter Button Label</b> - the label for the search button
@@ -93,6 +106,19 @@ Use this component to drop on record to show current location. You can move map 
   - Move the map to new location and address will show in bottom of map. Click on address location and it will set fields on the record. Address will disappear once you have set it.
   - A "find me" icon will show in top-right of map. This icon shows once the component captures your current lat/lng location. Just click this to move to your current location.
 * The component configuration fields are:
+| Parameter | Description |
+|-----------|-------------|
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
   - <b>SObject Field For Latitude</b> - SObject field that stores the latitude value
   - <b>SObject Field For Longitude</b> - SObject field that stores the longitude value
   - <b>SObject Field For Full Address</b> - SObject field that stores full address in one value
@@ -115,16 +141,19 @@ Use this component on a "parent" object to map all child records of a specific o
   - Will create custom icon and pop-up text based on MapIconField and mapMarkerField configuration settings
   - A "find me" icon will show in top-right of map. This icon shows once the component captures your current lat/lng location. Just click this to move to your current location.
 * The component configuration fields are:
-  - <b>SObject API Name of Child Object</b> - the API name of the child sobject to plot the related child records
-  - <b>SObject Field For Parent Id</b> - the field API name of the parent master-detail/lookup field
-  - <b>SObject Field for Latitide</b> - the field API name on child object for the latitude value.
-  - <b>SObject Field for Longitude</b> - the field API name on child object for the longitude value
-  - <b>Map Center Latitude</b> - the default latitude value for centering the map
-  - <b>Map Center Latitude</b> - the default longitude value for centering the map
-  - <b>SObject Field for Map Icon</b> - the field API name on child object for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example
-  - <b>SObject Field For Marker HTML</b> - the field API name on child object for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX)
-  - <b>Map Zoom Level</b> - Default map zoom level
-  - <b>Height of map in pixels</b> - Height of map in pixels  
+
+| Parameter | Description |
+|-----------|-------------|
+| <b>SObject API Name of Child Object</b> | the API name of the child sobject to plot the related child records |
+| <b>SObject Field For Parent Id</b> | the field API name of the parent master-detail/lookup field |
+| <b>SObject Field for Latitide</b> | the field API name on child object for the latitude value. |
+| <b>SObject Field for Longitude</b> | the field API name on child object for the longitude value |
+| <b>Map Center Latitude</b> | the default latitude value for centering the map |
+| <b>Map Center Latitude</b> | the default longitude value for centering the map |
+| <b>SObject Field for Map Icon</b> | the field API name on child object for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example |
+| <b>SObject Field For Marker HTML</b> | the field API name on child object for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX) |
+| <b>Map Zoom Level</b> | Default map zoom level |
+| <b>Height of map in pixels</b> | Height of map in pixels |
   
 ## PSAccessTracker
 The following is example of the component logging lat/lng and address to child object.
