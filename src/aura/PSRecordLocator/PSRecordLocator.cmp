@@ -54,10 +54,10 @@
 
       <div aura:id="controlDiv" id="controlDiv">
           <aura:if isTrue="{!v.origLat != null &amp;&amp; v.origLng != null}">
-          <div ><img src="/resource/PSMapComponents/gps-arrow.png" height="25" width="25" onclick="{!c.centerOnLocation}" /></div>
+          <div ><img src="{!$Resource.PSMapComponents + '/gps-arrow.png'}" height="25" width="25" onclick="{!c.centerOnLocation}" /></div>
         </aura:if>
         <aura:if isTrue="{!v.recLat != null &amp;&amp; v.recLng != null}">
-          <div class="slds-p-top_xxx-small"><img src="/resource/PSMapComponents/gps-crosshair-2.png" height="25" width="25" onclick="{!c.centerOnRecord}" /></div>
+          <div class="slds-p-top_xxx-small"><img src="{!$Resource.PSMapComponents + '/gps-crosshair-2.png'}" height="25" width="25" onclick="{!c.centerOnRecord}" /></div>
         </aura:if>
         </div>
     </div>
