@@ -39,8 +39,8 @@ The following is example of the component showing cases.
   - <b>Map Center Latitude</b> - the default longitude value for centering the map
   - <b>Map Zoom Level</b> - the default map zoom level; default: 11
   - <b>SObject Field for Map Icon</b> - the field API name for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example. An example formula for this field is like followng:
-  ```
-LEFT($Api.Partner_Server_URL_260, FIND( '/services', $Api.Partner_Server_URL_260)) & 
+ `
+ LEFT($Api.Partner_Server_URL_260, FIND( '/services', $Api.Partner_Server_URL_260)) & 
 CASE( Type, 
 "Animal Control", "resource/CaseType/OneCityAnimalInactive.png", 
 "Events", "resource/CaseType/OneCityEventsInactive.png", 
@@ -50,7 +50,7 @@ CASE( Type,
 "Public Works", "resource/CaseType/OneCityPublicWorksInactive.png", 
 "Street and Traffic", "resource/CaseType/OneCityStreetInactive.png", 
 "resource/CaseType/OneCityNoTypeInactive.png")
-  ```
+ `
   This shows a formula field that returns a URL to a static resource file named "CaseType" that is a zip of image files. Based on the case type, a different image file URL will be returned. The first line of the formula generates the base of the URL and will generate correct URL if used internally or in a community.
   - <b>SObject Field For Marker HTML</b> - the field API name for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX)
   - <b>Height of map in pixels</b> - the height of the map
