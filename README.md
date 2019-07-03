@@ -55,7 +55,7 @@ CASE( Type,
   This shows a formula field that returns a URL to a static resource file named "CaseType" that is a zip of image files. Based on the case type, a different image file URL will be returned. The first line of the formula generates the base of the URL and will generate correct URL if used internally or in a community.
   - <b>SObject Field For Marker HTML</b> - the field API name for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX). An example for this formula field is like the following:
   ` `<br/>
-  `
+  ```
 '<h3><a href=\"@ID@\">[' + CaseNumber + '] ' + Subject + '</a></h3>' +
 '<table><tr><td valign="top" style="padding-right: 10px">' +
 '</td><td>' +
@@ -63,7 +63,7 @@ CASE( Type,
 '<br/><b>Status:</b> ' + TEXT(Status) + 
 '<br/><b>Priority:</b> ' + TEXT(Priority) +
 '</td></tr></table>'
-  `
+  ```
   This shows a formula field that returns a text string with HTML markup. The HTML has header section with details for a case and then generates a table of <b>key: value</b> parameters
   - <b>Height of map in pixels</b> - the height of the map
   - <b>Only show records that have geolocation</b> - true/false value to determine if only records that have lat/lng values are shown or if all values matching the filter criteria are shown
