@@ -27,23 +27,43 @@ The following is example of the component showing cases.
 * If you don't want the map section to show, set the <b>SObject Field for Latitude</b> and <b>SObject Field for Longitude</b> values to blank.
 * If you don't want the table section to show, set the <b>SObject Fields to Show in Table</b> value to blank.
 * The component configuration fields are:
-  - <b>SObject To Map</b> - the API name of the sobject to filter data on
-  - <b>Title of Map Section</b> - the title to use at the top of the component
-  - <b>Filter Button Label</b> - the label for the search button
-  - <b>SObject Fields to Filter On</b> - comma separated list of field API names to provide search/filter capabilites; currently only supports text and picklist fields
-  - <b>SObject Fields to Show in Table</b> - comma separated list of field API names to show as columns in the table; if you leave this field blank then table will not show
-  - <b>CSV list of radius values (miles)</b> - comma separated list of radius values in miles; put * next to value you want to be the default; if you don't want to search by radius, just set to blank value
-  - <b>SObject Field for Latitide</b> - the field API name for the latitude value.
-  - <b>SObject Field for Longitude</b> - the field API name for the longitude value
-  - <b>Map Center Latitude</b> - the default latitude value for centering the map
-  - <b>Map Center Latitude</b> - the default longitude value for centering the map
-  - <b>Map Zoom Level</b> - the default map zoom level; default: 11
-  - <b>SObject Field for Map Icon</b> - the field API name for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example
-  - <b>SObject Field For Marker HTML</b> - the field API name for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX)
-  - <b>Height of map in pixels</b> - the height of the map
-  - <b>Only show records that have geolocation</b> - true/false value to determine if only records that have lat/lng values are shown or if all values matching the filter criteria are shown
-  - <b>My Record Fields</b> - comma separated list of field API names that contain the current user id you want to filter on; used to filter for "My Records"; example string values would be "OwnerId" or "OwnerId,ContactId"
-  - <b>Additional Where Clause</b> - static where clause statement to be added to query to filter records
+
+| Parameter | Description |
+|-----------|-------------|
+| <b>SObject To Map</b> | the API name of the sobject to filter data on |
+| <b>Title of Map Section</b> | the title to use at the top of the component |
+| <b>Filter Button Label</b> | the label for the search button |
+| <b>SObject Fields to Filter On</b> | comma separated list of field API names to provide search/filter capabilites; currently only supports text and picklist fields |
+| <b>SObject Fields to Show in Table</b> | comma separated list of field API names to show as columns in the table; if you leave this field blank then table will not show |
+| <b>CSV list of radius values (miles)</b> | comma separated list of radius values in miles; put * next to value you want to be the default; if you don't want to search by radius, just set to blank value |
+| <b>SObject Field for Latitide</b> | the field API name for the latitude value. |
+| <b>SObject Field for Longitude</b> | the field API name for the longitude value |
+| <b>Map Center Latitude</b> | the default latitude value for centering the map |
+| <b>Map Center Latitude</b> | the default longitude value for centering the map |
+| <b>Map Zoom Level</b> | the default map zoom level; default: 11  |
+| <b>SObject Field for Map Icon</b> | the field API name for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example. An example formula for this field is shown below in the section titled "Map Marker Formula" |
+| <b>SObject Field For Marker HTML</b> | the field API name for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX). An example for this formula field is shown in the Demo Tips section below. This shows a formula field that returns a text string with HTML markup. The HTML has header section with details for a case and then generates a table of <b>key: value</b> parameters |
+| <b>Height of map in pixels</b> | the height of the map |
+| <b>Only show records that have geolocation</b> | true/false value to determine if only records that have lat/lng values are shown or if all values matching the filter criteria are shown |
+| <b>My Record Fields</b> | comma separated list of field API names that contain the current user id you want to filter on; used to filter for "My Records"; example string values would be "OwnerId" or "OwnerId,ContactId" |
+| <b>Additional Where Clause</b> | static where clause statement to be added to query to filter records |
+
+### Map Marker Formula
+
+The following is sample for the MapMarker formula field. This shows a formula field that returns a URL to a static resource file (named "CaseType") that is a zip of image files. Based on the case type, a different image file URL will be returned. The first line of the formula generates the base of the URL and will generate correct URL if used internally or in a community.
+
+ ```
+ LEFT($Api.Partner_Server_URL_260, FIND( '/services', $Api.Partner_Server_URL_260)) & 
+CASE( Type, 
+"Animal Control", "resource/CaseType/OneCityAnimalInactive.png", 
+"Events", "resource/CaseType/OneCityEventsInactive.png", 
+"General Inquiry", "resource/CaseType/OneCityGeneralInactive.png", 
+"Licensing and Permitting", "resource/CaseType/OneCityPermitInactive.png", 
+"Noise", "resource/CaseType/OneCityNoiseInactive.png", 
+"Public Works", "resource/CaseType/OneCityPublicWorksInactive.png", 
+"Street and Traffic", "resource/CaseType/OneCityStreetInactive.png", 
+"resource/CaseType/OneCityNoTypeInactive.png")
+ ```
 
 ### Demo Tip
 
@@ -79,17 +99,20 @@ Use this component to drop on record to show current location. You can move map 
   - Move the map to new location and address will show in bottom of map. Click on address location and it will set fields on the record. Address will disappear once you have set it.
   - A "find me" icon will show in top-right of map. This icon shows once the component captures your current lat/lng location. Just click this to move to your current location.
 * The component configuration fields are:
-  - <b>SObject Field For Latitude</b> - SObject field that stores the latitude value
-  - <b>SObject Field For Longitude</b> - SObject field that stores the longitude value
-  - <b>SObject Field For Full Address</b> - SObject field that stores full address in one value
-  - <b>SObject Field For Street</b> - SObject field that stores the street
-  - <b>SObject Field For City</b> - SObject field that stores the city
-  - <b>SObject Field For State</b> - SObject field that stores the state
-  - <b>SObject Field For Postal/Zipcode</b> - SObject field that stores postal/zip code
-  - <b>Map Center Latitude</b> - Default latitude for center of map
-  - <b>Map Center Longitude</b> - Default longitude for center of map
-  - <b>Map Zoom Level</b> - Default map zoom level
-  - <b>Height of map in pixels</b> - Height of map in pixels
+
+| Parameter | Description |
+|-----------|-------------|
+| <b>SObject Field For Latitude</b> | SObject field that stores the latitude value |
+| <b>SObject Field For Longitude</b> | SObject field that stores the longitude value |
+| <b>SObject Field For Full Address</b> | SObject field that stores full address in one value |
+| <b>SObject Field For Street</b> | SObject field that stores the street |
+| <b>SObject Field For City</b> | SObject field that stores the city |
+| <b>SObject Field For State</b> | SObject field that stores the state |
+| <b>SObject Field For Postal/Zipcode</b> | SObject field that stores postal code |
+| <b>Map Center Latitude</b> | Default latitude for center of map |
+| <b>Map Center Longitude</b> | Default longitude for center of map |
+| <b>Map Zoom Level</b> | Default map zoom level |
+| <b>Height of map in pixels</b> | Height of map in pixels |
   
 ## PSRelatedListMap
 Use this component on a "parent" object to map all child records of a specific object type. The following is example of this map component on a record showing list of child records in map in top-right side.
@@ -101,16 +124,19 @@ Use this component on a "parent" object to map all child records of a specific o
   - Will create custom icon and pop-up text based on MapIconField and mapMarkerField configuration settings
   - A "find me" icon will show in top-right of map. This icon shows once the component captures your current lat/lng location. Just click this to move to your current location.
 * The component configuration fields are:
-  - <b>SObject API Name of Child Object</b> - the API name of the child sobject to plot the related child records
-  - <b>SObject Field For Parent Id</b> - the field API name of the parent master-detail/lookup field
-  - <b>SObject Field for Latitide</b> - the field API name on child object for the latitude value.
-  - <b>SObject Field for Longitude</b> - the field API name on child object for the longitude value
-  - <b>Map Center Latitude</b> - the default latitude value for centering the map
-  - <b>Map Center Latitude</b> - the default longitude value for centering the map
-  - <b>SObject Field for Map Icon</b> - the field API name on child object for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example
-  - <b>SObject Field For Marker HTML</b> - the field API name on child object for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX)
-  - <b>Map Zoom Level</b> - Default map zoom level
-  - <b>Height of map in pixels</b> - Height of map in pixels  
+
+| Parameter | Description |
+|-----------|-------------|
+| <b>SObject API Name of Child Object</b> | the API name of the child sobject to plot the related child records |
+| <b>SObject Field For Parent Id</b> | the field API name of the parent master-detail/lookup field |
+| <b>SObject Field for Latitide</b> | the field API name on child object for the latitude value. |
+| <b>SObject Field for Longitude</b> | the field API name on child object for the longitude value |
+| <b>Map Center Latitude</b> | the default latitude value for centering the map |
+| <b>Map Center Latitude</b> | the default longitude value for centering the map |
+| <b>SObject Field for Map Icon</b> | the field API name on child object for returning a URL to the icon image; use a formula field and generate a full URL to a static resource file image; look at the example MapIcon__c field on case object for example |
+| <b>SObject Field For Marker HTML</b> | the field API name on child object for returning an HTML string to be used in the map pin pop-up; the string can be any HTML formatted string; look at the example MarkerHTML__c field on case object for example (notice the use of the '@ID@' string that is used for href link. This will be replaced with correct URL link to record if used in community or LEX) |
+| <b>Map Zoom Level</b> | Default map zoom level |
+| <b>Height of map in pixels</b> | Height of map in pixels |
   
 ## PSAccessTracker
 The following is example of the component logging lat/lng and address to child object.
@@ -121,10 +147,13 @@ The following is example of the component logging lat/lng and address to child o
   - Just drop the component on a record page and configure it's properties
   - When someone accesses the record, it will capture the current lat/lng of the user and store in the related child object. If address field exists, it will also perform reverse geocode and store the address.
 * The component configuration fields are:
-  - <b>Child SObject API Name To Update</b> - The child SObject API name to add current geolocation to
-  - <b>Child SObject Field API Name (Parent)</b> - The child SObject field API name to the parent object (lookup or master-detail field)
-  - <b>Child SObject Field API Name (Latitude)</b> - The child SObject field API name to store latitude 
-  - <b>Child SObject Field API Name (Longitude)</b> - The child SObject field API name to store longitude 
-  - <b>Child SObject Field API Name (Address)</b> - The child SObject field API name to store full address (optional: leave blank if you don't need address)
+
+| Parameter | Description |
+|-----------|-------------|
+| <b>Child SObject API Name To Update</b> | The child SObject API name to add current geolocation to |
+| <b>Child SObject Field API Name (Parent)</b> | The child SObject field API name to the parent object (lookup or master-detail field) | 
+| <b>Child SObject Field API Name (Latitude)</b> | The child SObject field API name to store latitude | 
+| <b>Child SObject Field API Name (Longitude)</b> | The child SObject field API name to store longitude | 
+| <b>Child SObject Field API Name (Address)</b> | The child SObject field API name to store full address (optional: leave blank if you don't need address) | 
   
 
