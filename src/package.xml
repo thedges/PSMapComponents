@@ -20,6 +20,10 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>ArcGIS</members>
+        <name>CspTrustedSite</name>
+    </types>
+    <types>
         <members>Case.Location__c</members>
         <members>Case.MapIcon__c</members>
         <members>Case.MarkerHTML__c</members>
@@ -28,6 +32,7 @@
     <types>
         <members>CaseType</members>
         <members>JQueryDataTable_1_10_12</members>
+        <members>PSMapComponents</members>
         <members>jquery_2_2_4</members>
         <members>leaflet_1_0_2</members>
         <members>leaflet_1_3_2</members>
