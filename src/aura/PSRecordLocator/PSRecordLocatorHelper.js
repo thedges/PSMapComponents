@@ -94,7 +94,8 @@
     // Enqueue the action
     $A.enqueueAction (action);
   },
-  reverseGeocodeEsri: function (component, lat, lng) {
+  reverseGeocodeEsriJS: function (component, lat, lng) {
+
     var self = this;
     console.log ('reverseGeocodeEsri invoked...');
     console.log ('mode=' + component.get ('v.mode'));
@@ -106,6 +107,7 @@
         lng: lng,
       });
 
+      console.log('setting up action callback...');
       action.setCallback (self, function (a) {
         console.log ('resp=' + a.getReturnValue ());
 
@@ -142,9 +144,11 @@
         }
       });
 
+      console.log('enqueueAction action invoked...');
       $A.enqueueAction (action);
       //    s$A.clientService.runActions([action], this, function() {});
     }
+
   },
   createMap: function (component) {
     var self = this;
@@ -204,14 +208,14 @@
       clickable: false,
     });
 
-    map.on ('move', function (e) {
+    map.on ('move', $A.getCallback (function (e) {
       var mode = component.get ('v.mode');
       if (mode === 'RECORD' || mode === 'CENTER') {
         component.set ('v.mode', 'TRACK');
         self.showCenterCrosshair (component);
       }
       crosshairMarker.setLatLng (map.getCenter ());
-    });
+    }));
     component.set ('v.crosshairMarker', crosshairMarker);
 
     component.set ('v.crosshairLayer', crosshairLayer);
@@ -220,7 +224,7 @@
     //////////////////////////////////////////////////////////////////
     // when map is moved, do reverse address lookup and show on map //
     //////////////////////////////////////////////////////////////////
-    map.on ('moveend', function (e) {
+    map.on ('moveend', $A.getCallback (function (e) {
       console.log ('moveend=' + map.getCenter ());
 
       var coords = map.getCenter ();
@@ -228,8 +232,8 @@
       component.set ('v.longitude', coords.lng);
 
       console.log ('calling reverseGeocodeEsri');
-      self.reverseGeocodeEsri (component, coords.lat, coords.lng);
-    });
+      self.reverseGeocodeEsriJS (component, coords.lat, coords.lng);
+    }));
 
     component.set ('v.map', map);
     console.log ('map created...');
