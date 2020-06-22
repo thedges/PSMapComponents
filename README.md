@@ -48,6 +48,18 @@ The following is example of the component showing cases.
 | <b>My Record Fields</b> | comma separated list of field API names that contain the current user id you want to filter on; used to filter for "My Records"; example string values would be "OwnerId" or "OwnerId,ContactId" |
 | <b>Additional Where Clause</b> | static where clause statement to be added to query to filter records |
 
+### Community Guest User (Non-auth)
+
+If the PSObjectSearch component is being used in community and you want to configure access to guest users, here are a few items to check if records do not show when you do a search:
+
+  * Under __Security > Sharing Settings__, set the 'Default External Access' to the object you are mapping to some value other than Private
+  * Under __Security > Sharing Settings__, check to see if 'Secure guest user record access' is checked. If this is checked, you have a couple options to make sure guest user has access to records:
+    - Uncheck this setting, which should allow you to get access to records. This will allow access to records as you configured in first step (ex: if set to Public Read Only then you will have access to all records)
+    - Leave the option checked and create sharing rule on the object your are mapping and select "Guest user access, based on criteria". You will need to create a criteria-based sharing rule to provide access to the records. If you just want to share all records, just create a criteria rule that evalues to true for all records (ex: "CaseNumber not equal to 0")
+  * Lastly, a quick option to give guest user access to all records is edit the __PSObjectSearchController__ class and 
+change the class declaration use "without sharing" clause. The 1st line in class would be
+```global without sharing class PSObjectSearchController {```
+
 ### Map Marker Formula
 
 The following is sample for the MapMarker formula field. This shows a formula field that returns a URL to a static resource file (named "CaseType") that is a zip of image files. Based on the case type, a different image file URL will be returned. The first line of the formula generates the base of the URL and will generate correct URL if used internally or in a community.
