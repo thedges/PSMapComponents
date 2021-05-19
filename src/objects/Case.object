@@ -23,6 +23,8 @@ CASE( Type,
 &quot;General Inquiry&quot;, &quot;resource/CaseType/OneCityGeneralInactive.png&quot;, 
 &quot;Licensing and Permitting&quot;, &quot;resource/CaseType/OneCityPermitInactive.png&quot;, 
 &quot;Noise&quot;, &quot;resource/CaseType/OneCityNoiseInactive.png&quot;, 
+&quot;Complaint&quot;, &quot;resource/CaseType/OneCityNoiseInactive.png&quot;,
+&quot;Break/Fix&quot;, &quot;resource/CaseType/OneCityPublicWorksInactive.png&quot;,
 &quot;Public Works&quot;, &quot;resource/CaseType/OneCityPublicWorksInactive.png&quot;, 
 &quot;Street and Traffic&quot;, &quot;resource/CaseType/OneCityStreetInactive.png&quot;, 
 &quot;resource/CaseType/OneCityNoTypeInactive.png&quot;)</formula>

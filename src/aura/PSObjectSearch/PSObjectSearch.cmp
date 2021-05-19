@@ -16,6 +16,7 @@
     <aura:attribute name="mapOnly" type="String" default="true" />
     <aura:attribute name="extraWhereClause" type="String" default="" />
     <aura:attribute name="myRecordFields" type="String" default="" />
+    <aura:attribute name="autoCenter" type="Boolean" default="false" access="global" />
     <aura:attribute name="radiusCSV" type="String" default="5,10,20,*50,100,200,500"/>
 
     <!-- Runtime Parameters -->
@@ -72,7 +73,7 @@
                         </div>
                     </form>
                     <aura:renderIf isTrue="{!and(and(v.mapLatField != null, v.mapLatField.length > 0), and(v.mapLngField != null, v.mapLngField.length > 0))}">
-                        <c:PSObjectMap recList="{!v.recList}" mapCenterLat="{!v.mapCenterLat}" mapCenterLng="{!v.mapCenterLng}" mapLatField="{!v.mapLatField}" mapLngField="{!v.mapLngField}" mapZoomLevel="{!v.mapZoomLevel}" mapIconField="{!v.mapIconField}" mapMarkerField="{!v.mapMarkerField}" mapHeight="{!v.mapHeight}" currLat="{!v.currLat}" currLng="{!v.currLng}" />
+                        <c:PSObjectMap recList="{!v.recList}" mapCenterLat="{!v.mapCenterLat}" mapCenterLng="{!v.mapCenterLng}" mapLatField="{!v.mapLatField}" mapLngField="{!v.mapLngField}" mapZoomLevel="{!v.mapZoomLevel}" mapIconField="{!v.mapIconField}" mapMarkerField="{!v.mapMarkerField}" mapHeight="{!v.mapHeight}" currLat="{!v.currLat}" currLng="{!v.currLng}" autoCenter="{!v.autoCenter}"/>
                     </aura:renderIf>
                     <aura:renderIf isTrue="{!and(and(v.tableFieldComps != null, v.tableFieldComps.length > 0), $Browser.formFactor == 'DESKTOP')}">
                         <c:PSDataTable sobject="{!v.sobject}" recList="{!v.recList}" tableFields="{!v.tableFields}" tableFieldComps="{!v.tableFieldComps}" />

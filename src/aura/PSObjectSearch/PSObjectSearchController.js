@@ -7,11 +7,28 @@
     },
     doInit: function(component, event, helper) {
         //console.log("doInit called");
+        var autoCenter = component.get("v.autoCenter");
+        var mapCenterLat = component.get("v.mapCenterLat");
+        var mapCenterLng = component.get("v.mapCenterLng");
 
+        component.set("v.currLat", mapCenterLat);
+        component.set("v.currLng", mapCenterLng);
+
+        if (autoCenter)
+        {
+            navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
+                component.set("v.currLat", location.coords.latitude);
+                component.set("v.currLng", location.coords.longitude);
+              }));
+        }
+
+
+        /*
         navigator.geolocation.getCurrentPosition($A.getCallback(function(location) {
           component.set("v.currLat", location.coords.latitude);
           component.set("v.currLng", location.coords.longitude);
         }));
+        */
         
         helper.initRadiusParams(component);
         helper.setRuntimeEnv(component);
