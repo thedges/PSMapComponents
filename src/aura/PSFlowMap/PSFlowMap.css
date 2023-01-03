@@ -1,0 +1,20 @@
+.THIS #mapContainer {
+	position: relative;
+    z-index: 1;
+}
+.THIS #addressDiv {
+	width: 100%; opacity: 0.7; position: absolute; bottom: 0px;  
+        z-index: 999; background-color: #c9e6f2; padding: 0px; text-align: center; font-size: 1em
+}
+
+.THIS #locateDivXX {
+	position: absolute; top: 0px; right: 0px; z-index: 999; padding: 3px; 
+}
+
+.THIS #controlDiv {
+	position: absolute; top: 0px; right: 0px; z-index: 999; padding: 3px; 
+}
+
+.THIS .hide {
+    display: none;
+}

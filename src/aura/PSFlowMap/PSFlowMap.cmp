@@ -1,0 +1,72 @@
+<aura:component access="global" controller="PSFlowMapController" implements="lightning:availableForFlowScreens">
+  <ltng:require scripts="{!$Resource.leaflet_1_3_2 + '/leaflet.js'}" styles="{!$Resource.leaflet_1_3_2 + '/leaflet.css'}" afterScriptsLoaded="{!c.jsLoaded}" />
+
+  <aura:attribute name="mapCenterLat" type="String" default="30.267811" required="true" access="global" />
+  <aura:attribute name="mapCenterLng" type="String" default="-97.744328" required="true" access="global" />
+  <aura:attribute name="mapLatField" type="String" default="Location__Latitude__s" required="true" access="global" />
+  <aura:attribute name="mapLngField" type="String" default="Location__Longitude__s" required="true" access="global" />
+
+  <aura:attribute name="mapZoomLevel" type="Integer" default="14" required="true" access="global" />
+  <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
+  <aura:attribute name="autoCenter" type="Boolean" default="false" />
+  <aura:attribute name="mapLabel" type="String" default="Tiles @ Esri" required="false" access="global" />
+
+  <aura:attribute name="tmpLatitude" type="String" />
+  <aura:attribute name="tmpLongitude" type="String" />
+  <aura:attribute name="tmpFullAddress" type="String" />
+  <aura:attribute name="tmpStreet" type="String" />
+  <aura:attribute name="tmpCity" type="String" />
+  <aura:attribute name="tmpState" type="String" />
+  <aura:attribute name="tmpPostal" type="String" />
+
+  <aura:attribute name="latitude" type="String" />
+  <aura:attribute name="longitude" type="String" />
+  <aura:attribute name="fullAddress" type="String" />
+  <aura:attribute name="street" type="String" />
+  <aura:attribute name="city" type="String" />
+  <aura:attribute name="state" type="String" />
+  <aura:attribute name="postal" type="String" />
+
+  <aura:attribute name="recLat" type="String" />
+  <aura:attribute name="recLng" type="String" />
+  <aura:attribute name="origLat" type="String" />
+  <aura:attribute name="origLng" type="String" />
+
+  <aura:attribute name="map" type="Object" />
+  <aura:attribute name="runtimeEnv" type="object" />
+  <aura:attribute name="mapHTML" type="String" />
+
+  <aura:attribute name="markersLayerList" type="List" />
+
+  <aura:attribute name="recordMarker" type="Object" />
+  <aura:attribute name="recordLayer" type="Object" />
+  <aura:attribute name="crosshairMarker" type="Object" />
+  <aura:attribute name="crosshairLayer" type="Object" />
+
+  <aura:attribute name="mode" type="String" default="INIT" />   
+  <aura:handler event="aura:locationChange" action="{!c.destroyCmp}"/>
+
+  <div >
+    <div aura:id="mapContainer" id="mapContainer">
+      <!-- the map component -->
+      <div id="{!globalId + '_map'}" style="{!'height:' + v.mapHeight + 'px; border-radius: 5px'}"></div>
+
+      <!-- the street address overlay -->
+      <aura:if isTrue="{!v.mode == 'TRACK'}">
+        <div aura:id="addressDiv" id="addressDiv" align="center" style="font-family: Times New Roman, Times, serif; font-size: 20px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px"><a onclick="{!c.saveLocation}">{!v.tmpFullAddress}</a></div>
+      </aura:if>
+
+      <div aura:id="controlDiv" id="controlDiv">
+          <aura:if isTrue="{!v.origLat != null &amp;&amp; v.origLng != null}">
+          <div ><img src="{!$Resource.PSMapComponents + '/gps-arrow.png'}" height="25" width="25" onclick="{!c.centerOnLocation}" /></div>
+        </aura:if>
+        <aura:if isTrue="{!v.latitude != null &amp;&amp; v.longitude != null}">
+          <div class="slds-p-top_xxx-small"><img src="{!$Resource.PSMapComponents + '/gps-crosshair-2.png'}" height="25" width="25" onclick="{!c.centerOnSetLocation}" /></div>
+        </aura:if>
+        </div>
+    </div>
+  </div>
+      
+
+
+</aura:component>
