@@ -176,14 +176,23 @@ The following is example of the component in Flow UI Screen being used to retrie
 
 * Features of the component:
   - Just drop the component on a Flow UI screen and configure it's properties
+  - When setting up the component properties, make sure to set the properties marked (input/output) in both locations. This is needed if you go back in the flow to provide the values so that the PSFlowMap component and show the correct point on the map. This is needed because the PSFlowMap component reloads when you go backwards in flow.
 * The component configuration fields are:
 
 | Parameter | Description |
 |-----------|-------------|
-| <b>Child SObject API Name To Update</b> | The child SObject API name to add current geolocation to |
-| <b>Child SObject Field API Name (Parent)</b> | The child SObject field API name to the parent object (lookup or master-detail field) | 
-| <b>Child SObject Field API Name (Latitude)</b> | The child SObject field API name to store latitude | 
-| <b>Child SObject Field API Name (Longitude)</b> | The child SObject field API name to store longitude | 
-| <b>Child SObject Field API Name (Address)</b> | The child SObject field API name to store full address (optional: leave blank if you don't need address) | 
+| <b>Height of map in pixels</b> | The height in pixels for the map component in the Flow UI screen (input only) |
+| <b>Map Center Latitude</b> | The latitude to center the map on initial load (input only) | 
+| <b>Map Center Longitude</b> | The longitude to center the map on initial load (input only)| 
+| <b>Map Zoom Level</b> | The default map zoom level on initial load (input only) | 
+| <b>City</b> | The city value of the point on the map (input/output) | 
+| <b>Full Street Address</b> | The full street address of the point on the map (input/output) |
+| <b>Latitude</b> | The latitude of the point on the map (input/output) |
+| <b>Longitude</b> | The longitude of the point on the map (input/output) |
+| <b>Map Label</b> | The label to place in bottom-right of the map (input only) |
+| <b>Postal</b> |The postal/zipcode of the point on the map (input/output) |
+| <b>Re-center on current location</b> | Center on users current location when demoing: true or false (input only) |
+| <b>State</b> | The state of the point on the map (input/output) |
+| <b>Street</b> | The street of the point on the map (input/output) |
   
 
