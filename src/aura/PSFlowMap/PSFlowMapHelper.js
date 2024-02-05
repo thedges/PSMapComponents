@@ -355,7 +355,16 @@
         component.set ('v.tmpLongitude', coords.lng);
   
         console.log ('calling reverseGeocodeEsri');
-        self.reverseGeocodeEsriJS (component, coords.lat, coords.lng);
+        if (component.get ('v.latLngOnly'))
+        {
+          console.log ('Process latLngOnly...');
+          component.set ('v.tmpFullAddress', '[' + coords.lat.toFixed(6) + ',' + coords.lng.toFixed(6) + "]");
+        }
+        else
+        {
+          console.log ('Process reverseGeocode...');
+          self.reverseGeocodeEsriJS (component, coords.lat, coords.lng);
+        }
       }));
   
       component.set ('v.map', map);

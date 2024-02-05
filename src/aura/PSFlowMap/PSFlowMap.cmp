@@ -9,6 +9,7 @@
   <aura:attribute name="mapZoomLevel" type="Integer" default="14" required="true" access="global" />
   <aura:attribute name="mapHeight" type="Integer" default="500" required="true" access="global" />
   <aura:attribute name="autoCenter" type="Boolean" default="false" />
+  <aura:attribute name="latLngOnly" type="Boolean" default="false" />
   <aura:attribute name="mapLabel" type="String" default="Tiles @ Esri" required="false" access="global" />
 
   <aura:attribute name="tmpLatitude" type="String" />

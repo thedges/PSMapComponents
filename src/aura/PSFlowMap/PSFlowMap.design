@@ -3,6 +3,7 @@
     <design:attribute name="mapCenterLng" label="Map Center Longitude" Description="Longitude for center of map"  />
     <design:attribute name="mapZoomLevel" label="Map Zoom Level" Description="Map zoom level"  />
     <design:attribute name="autoCenter" label="Re-center on current location" Description="Re-center map to users physical location"  />
+    <design:attribute name="latLngOnly" label="Only lat/lng details" Description="Only lat/lng details and no street address"  />
     <design:attribute name="mapHeight" label="Height of map in pixels" Description="Height of map in pixels"  />
     <design:attribute name="mapLabel" label="Map Label" Description="Label to place in bottom-right of map"  />
 
