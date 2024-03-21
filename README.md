@@ -15,6 +15,13 @@ This package includes variety of map/GIS related demo components:
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
+<b>Post-installation:</b>
+* If using the PSObjectSearch, make sure your user profile has access to the PSObjectSearchController apex class.
+* If using the PSRecordLocator, make sure your user profile has access to the PSRecordLocatorController apex class.
+* If using the PSFlowMap, make sure your user profile has access to the PSFlowMapController apex class.
+* If using the PSRelatedListMap, make sure your user profile has access to the PSRelatedListMapController apex class.
+
+
 ## PSObjectSearch
 The following is example of the component showing cases.
 
