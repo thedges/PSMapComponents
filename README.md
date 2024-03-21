@@ -14,8 +14,7 @@ This package includes variety of map/GIS related demo components:
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
-
-
+<br/>
 <b>Post-installation:</b>
 * If using the PSObjectSearch, make sure your user profile has access to the PSObjectSearchController apex class.
 * If using the PSRecordLocator, make sure your user profile has access to the PSRecordLocatorController apex class.
