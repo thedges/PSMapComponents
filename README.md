@@ -8,6 +8,7 @@ This package includes variety of map/GIS related demo components:
 * <b>PSAccessTracker</b> - invisible component to capture the latitude/longitude (and optionally, street address) of person accessing the record
 * <b>PSFlowMap</b> - component to add to Flow screen to get address details and lat/lng for a defined point on map.
 
+### Installation:
 <b>Dependency:</b> Install the [LightningStrike.io](https://github.com/thedges/Lightning-Strike) and [PSCommon](https://github.com/thedges/PSCommon) packages first
 
 <a href="https://githubsfdeploy.herokuapp.com">
